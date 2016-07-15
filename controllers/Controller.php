@@ -12,8 +12,8 @@ abstract class Controller
         $this->twig = new \Twig_Environment($loader);
         $template = $this->twig->loadTemplate('top.html.twig');
         $data = array(
-            'title' => '英単語プレテスト',
-            'message'  => 'ようこそ！'
+            'title' => SITE_NAME,
+            'site_description' => SITE_DESCRIPTION
         );
         echo $template->render($data);
     }
