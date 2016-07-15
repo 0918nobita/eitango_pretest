@@ -1,0 +1,10 @@
+# Intellij IDEA
+.idea
+pretest.iml
+
+# Composer
+vendor/composer/
+vendor/twig/
+vendor/autoload.php
+composer.lock
+composer.phar
