@@ -1,14 +1,8 @@
 {
-  "name": "vendor_name/package_name",
-  "description": "description_text",
+  "name": "0918nobita/pretest",
+  "description": "英単語を様々なアプローチで暗記することができます",
   "minimum-stability": "stable",
   "license": "proprietary",
-  "authors": [
-    {
-      "name": "author's name",
-      "email": "email@example.com"
-    }
-  ],
   "require": {
     "twig/twig": "1.6.5"
   },
