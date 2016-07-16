@@ -1,0 +1,56 @@
+body
+{
+    font-family: メイリオ, Meiryo UI,MS ゴシック;
+    background-color: #FFFFFF;
+    margin: 0 auto;
+    padding: 0;
+}
+@media screen and (min-width: 900px) {
+    body {
+        width: 900px;
+    }
+}
+#header
+{
+    font-weight: bold;
+    color:white;
+    background-color: #222233;
+    margin:0;
+    padding:1em;
+}
+#main
+{
+    background-color: #EFEFEF;
+    margin:0;
+    padding:1em;
+}
+input
+{
+    font-size: 1em;
+}
+#main img
+{
+    width:25%;
+}
+#wordcard_header
+{
+    font-weight: bold;
+    color: white;
+    background-color: #FF8040;
+    margin:0;
+    padding:1em;
+}
+
+#pagetop {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 10px;
+    background-color: #222233;
+    color: white;
+}
+
+textarea {
+    width: 100%;
+}
