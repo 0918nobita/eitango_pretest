@@ -10,6 +10,10 @@ abstract class Controller
     {
         $loader = new \Twig_Loader_Filesystem(__DIR__ . '/../views');
         $this->twig = new \Twig_Environment($loader);
+    }
+
+    public function display()
+    {
         $template = $this->twig->loadTemplate('base.html.twig');
         $data = array(
             'title' => SITE_NAME,
@@ -17,9 +21,5 @@ abstract class Controller
             'content' => $this->view
         );
         echo $template->render($data);
-    }
-
-    public function display()
-    {
     }
 }
