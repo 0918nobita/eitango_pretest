@@ -8,3 +8,5 @@ vendor/twig/
 vendor/autoload.php
 composer.lock
 composer.phar
+
+config-secret.php
