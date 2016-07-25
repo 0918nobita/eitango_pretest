@@ -4,6 +4,7 @@ namespace Pretest\Controllers;
 abstract class Controller
 {
     protected $view = 'top.html.twig';
+    protected $stylesheetPath;
     protected $twig;
 
     public function __construct()
