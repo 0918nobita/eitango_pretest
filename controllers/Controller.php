@@ -3,7 +3,7 @@ namespace Pretest\Controllers;
 
 abstract class Controller
 {
-    protected $view = 'top.html.twig';
+    protected $view;
     protected $stylesheetPath;
     protected $twig;
 
@@ -19,7 +19,8 @@ abstract class Controller
         $data = array(
             'title' => SITE_NAME,
             'site_description' => SITE_DESCRIPTION,
-            'content' => $this->view
+            'content' => $this->view,
+            'stylesheet_file_path' => $this->stylesheetPath
         );
         echo $template->render($data);
     }
