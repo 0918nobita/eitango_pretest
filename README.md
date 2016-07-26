@@ -47,7 +47,7 @@ CREATE TABLE words (
 - DB_USERNAME(DBユーザ名)
 - DB_PASSWORD(DBパスワード)
 
-例えば上記の **DDL(for MySQL)** で、DB名を`ep`という名前で作成し、DBユーザ名が`db-user`、パスワードは`db-password`の場合、config-secret.phpには以下の3行になります。
+例えば上記の **DDL (for MySQL)** で、DB名を`ep`という名前で作成し、DBユーザ名が`db-user`、パスワードは`db-password`の場合、`config-secret.php`は以下の3行になります。
 
 ```php
 <?php
