@@ -1,5 +1,6 @@
 <?php
 namespace Pretest\Controllers;
+use Pretest\Models\PretestModel;
 
 /**
  * TopController クラス
@@ -13,4 +14,16 @@ class TopController extends Controller
 {
     protected $view = 'top.html.twig';
     protected $stylesheetPath = './views/style.css';
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->model = new PretestModel();
+    }
+
+    public function display()
+    {
+        $this->data = array_merge($this->data, array("max" => $this->model->max));
+        parent::display();
+    }
 }
