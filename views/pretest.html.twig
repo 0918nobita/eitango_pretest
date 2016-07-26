@@ -1,35 +1,20 @@
 <div id="header"><a href="./" style="text-decoration: none;color:white;">戻る</a>　～をプレテスト中</div>
 <div id="main">
-    <!--<?php
-if ($_GET['answer_method'] == "type") {
-	echo "答えを入力して、右の確認ボタンを押して合っているか確認してください。<br />";
-    } elseif ($_GET['method'] == "eitango-imi") {
-    echo "英単語を見て、意味を答えてください。<br />カーソルを重ねている間だけ、答えが表示されます。<br />";
-    } elseif ($_GET['method'] == "imi-eitango") {
-    echo "意味を見て、英単語を答えてください。<br />カーソルを重ねている間だけ、答えが表示されます。<br />";
-    } else {
-    echo "エラーが発生しました";
-    exit();
-    }
-    ?>
-    (Google ChromeとSafari以外のブラウザでは発音機能が利用できません。ご了承ください。)
-    <?php
-$db = new PDO('sqlite:database.sqlite3');
-$sql = "select * from words where id between ".$_GET['first']." and ".$_GET['last'].";";
-$stmt = $db->query($sql);
-    ?>
-    <br /><br />
-    <?php
-if ($_SESSION['logined']) {
-	echo "<input type='button' value='中断する'> ";
-    }
-    ?>
+    {% if method == "eitango-imi" %}
+        <p>英単語を見て、意味を答えてください。<br />カーソルを重ねている間だけ、答えが表示されます。</p>
+    {% elseif method == "imi-eitango" %}
+        <p>意味を見て、英単語を答えてください。<br />カーソルを重ねている間だけ、答えが表示されます。</p>
+    {% endif %}
+    <p>(Google ChromeとSafari以外のブラウザでは発音機能が利用できません。ご了承ください。)</p>
     <input type="button" value="すべて選択解除" onClick="uncheckAll();">
-    <?php if ($_GET['answer_method'] != "type") echo '<input type="button" id="display_button" value="答えをすべて表示" onClick="display();">'; ?>
-    <br /><br />-->
+    <input type="button" id="display_button" value="答えをすべて表示" onClick="display();">
+    <br /><br />
     <div style="overflow:hidden;overflow-x:auto;">
         <form name="words">
             <table>
+                {% for i in words | keys %}
+                    <tr><td>{{ words[i]["id"] }}</td><td>{{ words[i]["front"] }}</td><td>{{ words[i]["back"] }}</td></tr>
+                {% endfor %}
                 <!--<?php
 		if ($_GET['answer_method'] == "type") {
 			$words = array();

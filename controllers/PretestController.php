@@ -30,12 +30,16 @@ class PretestController extends Controller
     public function display()
     {
         $this->validator->checkRange($_POST["first"], $_POST["last"], $this->model->max);
+        if ($_POST["method"] == "eitango-imi") {
+            $this->data = array_merge($this->data, array("method" => "eitango-imi"));
+        } else {
+            $this->data = array_merge($this->data, array("method" => "imi-eitango"));
+        }
         if ($_POST["order"] == "num") {
             $this->data = array_merge($this->data, array("words" => $this->model->getWords($_POST["first"], $_POST["last"], Models\PretestModel::NUM)));
         } else {
             $this->data = array_merge($this->data, array("words" => $this->model->getWords($_POST["first"], $_POST["last"], Models\PretestModel::RND)));
         }
         parent::display();
-        var_dump($this->model->getWords($_POST["first"], $_POST["last"], Models\PretestModel::RND));
     }
 }
