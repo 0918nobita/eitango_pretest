@@ -16,6 +16,7 @@ abstract class Controller
     protected $view; // テンプレートファイルの名前
     protected $stylesheetPath; // スタイルシートファイルのパス
     protected $twig; // Twigインスタンスが代入される
+    protected $data = array(); // テンプレートファイルに埋め込むデータ
 
     /**
      * Twigのインスタンスを生成しtwigフィールドに代入する。
@@ -34,12 +35,12 @@ abstract class Controller
     public function display()
     {
         $template = $this->twig->loadTemplate('base.html.twig');
-        $data = array(
+        $this->data = array_merge($this->data, array(
             'title' => SITE_NAME,
             'site_description' => SITE_DESCRIPTION,
             'content' => $this->view,
             'stylesheet_file_path' => $this->stylesheetPath
-        );
-        echo $template->render($data);
+        ));
+        echo $template->render($this->data);
     }
 }
