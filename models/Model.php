@@ -3,21 +3,21 @@ namespace Pretest\Models;
 
 /**
  * Model 抽象クラス
- * dbConnectメソッドでデータベースとの接続処理を実装する
+ * コンストラクタでデータベースとの接続処理を実装する
  * @access public
  * @author 0918nobita
  * @package Pretest\Models
  */
 abstract class Model
 {
+    protected $db; // PDOインスタンスが代入される
     /**
-     * データベースに接続しPDOオブジェクトを返す
+     * データベースに接続しPDOインスタンスを生成する
      */
-    public function dbConnect() {
+    public function __construct() {
         try {
-            $db = new \PDO(PDO_DSN, DB_USERNAME, DB_PASSWORD);
-            $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            return $db;
+            $this->db = new \PDO(PDO_DSN, DB_USERNAME, DB_PASSWORD);
+            $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $e) {
             echo $e->getMessage();
             die();
