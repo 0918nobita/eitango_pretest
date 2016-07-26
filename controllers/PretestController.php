@@ -29,6 +29,7 @@ class PretestController extends Controller
 
     public function display()
     {
+        $this->validator->checkRange($_GET["first"], $_GET["last"], $this->model->max);
         parent::display();
     }
 }

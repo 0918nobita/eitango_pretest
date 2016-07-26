@@ -7,8 +7,17 @@ namespace Pretest\Models;
  * @access public
  * @author 0918nobita
  * @package Pretest\Models
- * @todo データベースから英単語データを取得するメソッドが実装できていない
+ * @todo データベースから英単語一覧を取得するメソッドが実装できていない
  */
 class PretestModel extends Model
 {
+    public $max;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $stmt = $this->db->query("SELECT MAX(id) as id_max FROM words");
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        $this->max = $result["id_max"];
+    }
 }
