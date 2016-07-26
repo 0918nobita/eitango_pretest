@@ -3,6 +3,13 @@ namespace Pretest;
 
 use Pretest\Controllers\TopController;
 
+/**
+ * Dispatcher クラス
+ * GETパラメータをもとに呼び出すコントローラとアクションを決定し、コントローラクラスからインスタンスを生成してアクションを呼び出す。
+ * @access public
+ * @author 0918nobita
+ * @package Pretest
+ */
 class Dispatcher
 {
     public function dispatch()
