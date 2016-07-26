@@ -12,6 +12,7 @@ namespace Pretest\Controllers;
  */
 abstract class Controller
 {
+    protected $model; // モデルクラスのインスタンスが代入される
     protected $view; // テンプレートファイルの名前
     protected $stylesheetPath; // スタイルシートファイルのパス
     protected $twig; // Twigインスタンスが代入される
