@@ -1,8 +1,6 @@
 <?php
 namespace Pretest;
 
-use Pretest\Controllers\TopController;
-
 /**
  * Dispatcher クラス
  * GETパラメータをもとに呼び出すコントローラとアクションを決定し、コントローラクラスからインスタンスを生成してアクションを呼び出す。
@@ -19,6 +17,9 @@ class Dispatcher
         switch ($controller) {
             case 'pretest':
                 $controllerInstance = new Controllers\PretestController();
+                break;
+            case 'error':
+                $controllerInstance = new Controllers\ErrorController();
                 break;
             default:
                 $controllerInstance = new Controllers\TopController();

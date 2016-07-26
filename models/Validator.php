@@ -14,7 +14,7 @@ class Validator
 {
     public function checkRange($first, $last, $max) {
         if ($first < 1 || $last > $max) {
-            header("location: ./");
+            header("location: ./?controller=error");
         }
     }
 }
