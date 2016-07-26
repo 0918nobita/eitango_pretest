@@ -25,7 +25,7 @@ class PretestModel extends Model
     }
     
     public function getWords($first, $last, $order) {
-        $stmt = $this->db->prepare("SELECT * FROM words WHERE id >= :first AND id < :last");
+        $stmt = $this->db->prepare("SELECT * FROM words WHERE id >= :first AND id <= :last");
         $stmt->bindValue(":first", $first);
         $stmt->bindValue(":last", $last);
         $stmt->execute();
