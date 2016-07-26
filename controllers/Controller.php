@@ -12,9 +12,9 @@ namespace Pretest\Controllers;
  */
 abstract class Controller
 {
-    protected $view;
-    protected $stylesheetPath;
-    protected $twig;
+    protected $view; // テンプレートファイルの名前
+    protected $stylesheetPath; // スタイルシートファイルのパス
+    protected $twig; // Twigインスタンスが代入される
 
     /**
      * Twigのインスタンスを生成しtwigフィールドに代入する。
