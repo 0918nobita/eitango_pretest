@@ -60,3 +60,4 @@ document.settings.order.addEventListener("click", function() {
             break;
     }
 });
+document.settings.display.dispatchEvent(new Event("click"));
