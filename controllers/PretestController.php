@@ -29,7 +29,13 @@ class PretestController extends Controller
 
     public function display()
     {
-        $this->validator->checkRange($_GET["first"], $_GET["last"], $this->model->max);
+        $this->validator->checkRange($_POST["first"], $_POST["last"], $this->model->max);
+        if ($_POST["order"] == "num") {
+            $this->data = array_merge($this->data, array("words" => $this->model->getWords($_POST["first"], $_POST["last"], Models\PretestModel::NUM)));
+        } else {
+            $this->data = array_merge($this->data, array("words" => $this->model->getWords($_POST["first"], $_POST["last"], Models\PretestModel::RND)));
+        }
         parent::display();
+        var_dump($this->model->getWords($_POST["first"], $_POST["last"], Models\PretestModel::RND));
     }
 }
