@@ -7,7 +7,6 @@ namespace Pretest\Models;
  * @access public
  * @author 0918nobita
  * @package Pretest\Models
- * @todo データベースから英単語一覧を取得するメソッドが実装できていない
  */
 class PretestModel extends Model
 {

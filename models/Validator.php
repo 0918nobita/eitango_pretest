@@ -7,7 +7,6 @@ namespace Pretest\Models;
  * @access public
  * @author 0918nobita
  * @package Pretest\Models
- * @todo 出題範囲の指定が間違っているときのエラー表示処理を実装できていない
  */
 
 class Validator

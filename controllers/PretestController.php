@@ -10,7 +10,6 @@ use Pretest\Models;
  * @access public
  * @author 0918nobita
  * @package Pretest\Controllers
- * @todo データベースと英単語データを受送信するPretestModelクラスから受け取ったデータをビューに渡す処理が実装できていない
  */
 
 class PretestController extends Controller
