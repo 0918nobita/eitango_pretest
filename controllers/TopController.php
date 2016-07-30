@@ -13,7 +13,7 @@ use Pretest\Models\PretestModel;
 class TopController extends Controller
 {
     protected $view = 'top.html.twig';
-    protected $stylesheetPath = './views/style.css';
+    protected $stylesheetPath = './views/css/top.css';
 
     public function __construct()
     {

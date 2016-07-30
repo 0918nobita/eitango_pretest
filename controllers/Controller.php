@@ -8,7 +8,6 @@ namespace Pretest\Controllers;
  * @access public
  * @author 0918nobita
  * @package Pretest\Controllers
- * @todo スタイルシートファイルの管理方法が定まっていない。
  */
 abstract class Controller
 {

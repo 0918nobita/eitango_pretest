@@ -15,7 +15,7 @@ use Pretest\Models;
 class PretestController extends Controller
 {
     protected $view = 'pretest.html.twig';
-    protected $stylesheetPath = "./views/pretest.css";
+    protected $stylesheetPath = "./views/css/pretest.css";
 
     protected $validator; // 入力値検証クラスのインスタンスが代入される
 
