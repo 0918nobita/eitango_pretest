@@ -20,6 +20,14 @@ Composer Version 1.1.3 で
 
 でライブラリのアップデートを行います。
 
+## LESS
+
+npmでインストールした Less Compiler [JavaScript] 2.7.1 を使用しています
+
+## jQuery
+
+jQuery 3.1.0 (Compressed) 本体を``views``フォルダに保存して使用しています
+
 ## DDL (for MySQL)
 
 ```sql
@@ -38,10 +46,6 @@ CREATE TABLE words (
   PRIMARY KEY (id)  
 ) ENGINE=InnoDB AUTO_INCREMENT=1201 DEFAULT CHARSET=utf8
 ```
-
-## LESS
-
-npmでインストールした Less Compiler [JavaScript] 2.7.1 を使用しています
 
 ## アプリケーションの実行方法
 
