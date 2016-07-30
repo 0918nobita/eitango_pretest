@@ -39,6 +39,10 @@ CREATE TABLE words (
 ) ENGINE=InnoDB AUTO_INCREMENT=1201 DEFAULT CHARSET=utf8
 ```
 
+## LESS
+
+npmでインストールした Less Compiler [JavaScript] 2.7.1 を使用しています
+
 ## アプリケーションの実行方法
 
 `config-secret.php`をプロジェクトルートに作成し以下の3つの定数を定義し、利用しているデータベースの情報を指定してください。
@@ -54,4 +58,12 @@ CREATE TABLE words (
 define("PDO_DSN", "mysql:dbname=ep;host=127.0.0.1");
 define("DB_USERNAME", "db-user");
 define("DB_PASSWORD", "db-password");
+```
+
+次に、コマンドラインでプロジェクト内の`views`フォルダをカレントディレクトリに設定し  
+以下のコンパイルコマンドを用いて`.less`ファイルを`.css`ファイルに変換してください。
+
+```text
+lessc less/top.less css/top.css
+lessc less/pretest.less css/pretest.css
 ```
