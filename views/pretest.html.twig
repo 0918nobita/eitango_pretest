@@ -57,11 +57,15 @@
 
 <script>
     $(function(){
+        $("#page-top").click(function(){
+            $("html,body").animate({scrollTop:0});
+        });
+
         $(window).scroll(function(){
             if ($(this).scrollTop() > 100) {
-                $("#pagetop").fadeIn();
+                $("#page-top").fadeIn();
             } else {
-                $("#pagetop").fadeOut();
+                $("#page-top").fadeOut();
             }
         });
     });
