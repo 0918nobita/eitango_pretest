@@ -45,7 +45,7 @@
             </table>
         </form>
     </div>
-    <div id="pagetop">トップ</div>
+    <div id="page-top">トップ</div>
     <p>エラー/バグ等を発見した場合はお手数ですが開発者(<a href="mailto:nobita.0918&#64;gmail.com">こちら</a>)にご連絡ください</p>
     &copy;2015-2016 0918nobita
 </div>
@@ -54,3 +54,16 @@
     localStorage.setItem("words", JSON.parse('<?php echo json_encode($words); ?>'));
     console.log(localStorage.getItem("words"));
 </script>-->
+
+<script>
+    $(function(){
+        $(window).scroll(function(){
+            if ($(this).scrollTop() > 100) {
+                $("#pagetop").fadeIn();
+            } else {
+                $("#pagetop").fadeOut();
+            }
+        });
+        console.log("hoge");
+    });
+</script>
