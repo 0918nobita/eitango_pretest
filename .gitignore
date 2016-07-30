@@ -2,6 +2,9 @@
 .idea
 pretest.iml
 
+# jQuery
+views/jquery-3.1.0.min.js
+
 # Composer
 vendor/
 composer.lock
