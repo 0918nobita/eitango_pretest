@@ -9,4 +9,7 @@ vendor/autoload.php
 composer.lock
 composer.phar
 
+# .lessファイルから書き出された.cssファイル
+views/css/
+
 config-secret.php
