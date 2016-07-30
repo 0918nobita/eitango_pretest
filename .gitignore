@@ -3,9 +3,7 @@
 pretest.iml
 
 # Composer
-vendor/composer/
-vendor/twig/
-vendor/autoload.php
+vendor/
 composer.lock
 composer.phar
 
@@ -13,3 +11,7 @@ composer.phar
 views/css/
 
 config-secret.php
+
+# 古いCSSファイル (LESS導入前のもの)
+views/style.css
+views/pretest.css
