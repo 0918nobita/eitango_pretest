@@ -5,30 +5,30 @@
         各種設定ができます。現在は1～{{ max }}をプレテストすることができます。</p>
     <h2>設定</h2>
     <form name="settings" action="?controller=pretest" method="POST">
-        <p><input type="number" name="first" min="1" max="{{ max }}" required> ～ <input type="number" name="last" min="1" max="{{ max }}" required></p>
+        <p><input type="number" name="first" min="1" max="{{ max }}" value="{{ first }}"required> ～ <input type="number" name="last" min="1" max="{{ max }}" value="{{ last }}" required></p>
         <p id="display">1.
             <select name="display">
-                <option value="non-selected" selected>選択してください</option>
-                <option value="table">一覧表示</option>
-                <option value="one-by-one">一問ずつ画面切り替え</option>
+                <option value="non-selected">選択してください</option>
+                <option value="table" {{ table_selected }}>一覧表示</option>
+                <option value="one-by-one" {{ one_by_one_selected }}>一問ずつ画面切り替え</option>
             </select>
         </p>
         <p id="method" style="display:none;">2.
             <select name="method">
-                <option value="non-selected" selected>選択してください</option>
-                <option value="eitango-imi">英単語を見て意味を答える</option>
-                <option value="imi-eitango">意味を見て英単語を答える</option>
+                <option value="non-selected">選択してください</option>
+                <option value="eitango-imi" {{ eitango_imi_selected }}>英単語を見て意味を答える</option>
+                <option value="imi-eitango" {{ imi-eitango_selected }}>意味を見て英単語を答える</option>
             </select>
         </p>
         <p id="order" style="display:none;">3.
             <select name="order">
-                <option value="non-selected" selected>選択してください</option>
-                <option value="num">番号順</option>
-                <option value="rnd">ランダム</option>
+                <option value="non-selected">選択してください</option>
+                <option value="num" {{ num_selected }}>番号順</option>
+                <option value="rnd" {{ rnd_selected }}>ランダム</option>
             </select>
         </p>
         <p id="quantity" style="display:none;">4.
-            問題数(指定する場合のみ)： <input type="number" name="quantity" min="1" max="1900" />
+            問題数(指定する場合のみ)： <input type="number" name="quantity" min="1" max="1900" value="{{ quantity }}" />
         </p>
         <input type="submit" value="プレテスト開始！" style="display:none;" />
     </form>

@@ -24,6 +24,39 @@ class TopController extends Controller
     public function display()
     {
         $this->assign(array("max" => $this->model->max));
+        if (isset($_SESSION["setting"])) {
+            $this->assign(array(
+                "first" => $_SESSION["first"],
+                "last" => $_SESSION["last"]
+            ));
+            switch ($_SESSION["display"]) {
+                case "table":
+                    $this->assign(array("table_selected" => "selected"));
+                    break;
+                case "one-by-one":
+                    $this->assign(array("one_by_one_selected" => "selected"));
+                    break;
+            }
+            switch ($_SESSION["method"]) {
+                case "eitango-imi":
+                    $this->assign(array("eitango_imi_selected" => "selected"));
+                    break;
+                case "imi-eitango":
+                    $this->assign(array("imi_eitango_selected" => "selected"));
+                    break;
+            }
+            switch ($_SESSION["order"]) {
+                case "num":
+                    $this->assign(array("num_selected" => "selected"));
+                    break;
+                case "rnd":
+                    $this->assign(array("rnd_selected" => "selected"));
+                    if (isset($_SESSION["quantity"]) && $_SESSION["quantity"] != 0) {
+                        $this->assign(array("quantity" => $_SESSION["quantity"]));
+                    }
+                    break;
+            }
+        }
         parent::display();
     }
 }

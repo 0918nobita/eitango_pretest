@@ -40,6 +40,13 @@ class PretestController extends Controller
         } else {
             $this->assign(array("words" => $this->model->getWords($_POST["first"], $_POST["last"], Models\PretestModel::RND, $_POST["quantity"])));
         }
+        $_SESSION["setting"] = "true";
+        $_SESSION["first"] = $_POST["first"];
+        $_SESSION["last"] = $_POST["last"];
+        $_SESSION["display"] = $_POST["display"];
+        $_SESSION["method"] = $_POST["method"];
+        $_SESSION["order"] = $_POST["order"];
+        $_SESSION["quantity"] = $_POST["quantity"];
         parent::display();
     }
 }
