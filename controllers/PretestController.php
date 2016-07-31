@@ -38,7 +38,7 @@ class PretestController extends Controller
         if ($_POST["order"] == "num") {
             $this->data = array_merge($this->data, array("words" => $this->model->getWords($_POST["first"], $_POST["last"], Models\PretestModel::NUM)));
         } else {
-            $this->data = array_merge($this->data, array("words" => $this->model->getWords($_POST["first"], $_POST["last"], Models\PretestModel::RND)));
+            $this->data = array_merge($this->data, array("words" => $this->model->getWords($_POST["first"], $_POST["last"], Models\PretestModel::RND, $_POST["quantity"])));
         }
         parent::display();
     }

@@ -23,13 +23,16 @@ class PretestModel extends Model
         $this->max = $result["id_max"];
     }
     
-    public function getWords($first, $last, $order) {
+    public function getWords($first, $last, $order, $quantity=0) {
         $stmt = $this->db->prepare("SELECT * FROM words WHERE id >= :first AND id <= :last");
         $stmt->bindValue(":first", $first);
         $stmt->bindValue(":last", $last);
         $stmt->execute();
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        if ($order == PretestModel::RND) shuffle($result);
+        if ($order == PretestModel::RND) {
+            shuffle($result);
+            if ($quantity) $result = array_splice($result, 0, $quantity);
+        }
         return $result;
     }
 }
