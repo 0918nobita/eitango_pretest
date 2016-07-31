@@ -8,7 +8,9 @@
   },
   "autoload": {
     "psr-4": {
-      "Pretest\\": ""
+      "Pretest\\": "",
+      "Pretest\\Controllers\\": "controllers/",
+      "Pretest\\Models\\": "models/"
     }
   }
 }
