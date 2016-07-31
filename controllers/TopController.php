@@ -23,7 +23,7 @@ class TopController extends Controller
 
     public function display()
     {
-        $this->data = array_merge($this->data, array("max" => $this->model->max));
+        $this->assign(array("max" => $this->model->max));
         parent::display();
     }
 }

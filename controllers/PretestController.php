@@ -29,16 +29,16 @@ class PretestController extends Controller
     public function display()
     {
         $this->validator->checkRange($_POST["first"], $_POST["last"], $this->model->max);
-        $this->data = array_merge($this->data, array("first" => $_POST["first"], "last" => $_POST["last"]));
+        $this->assign(array("first" => $_POST["first"], "last" => $_POST["last"]));
         if ($_POST["method"] == "eitango-imi") {
-            $this->data = array_merge($this->data, array("method" => "eitango-imi"));
+            $this->assign(array("method" => "eitango-imi"));
         } else {
-            $this->data = array_merge($this->data, array("method" => "imi-eitango"));
+            $this->assign(array("method" => "imi-eitango"));
         }
         if ($_POST["order"] == "num") {
-            $this->data = array_merge($this->data, array("words" => $this->model->getWords($_POST["first"], $_POST["last"], Models\PretestModel::NUM)));
+            $this->assign(array("words" => $this->model->getWords($_POST["first"], $_POST["last"], Models\PretestModel::NUM)));
         } else {
-            $this->data = array_merge($this->data, array("words" => $this->model->getWords($_POST["first"], $_POST["last"], Models\PretestModel::RND, $_POST["quantity"])));
+            $this->assign(array("words" => $this->model->getWords($_POST["first"], $_POST["last"], Models\PretestModel::RND, $_POST["quantity"])));
         }
         parent::display();
     }
