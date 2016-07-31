@@ -29,6 +29,7 @@ class PretestController extends Controller
     public function display()
     {
         $this->validator->checkRange($_POST["first"], $_POST["last"], $this->model->max);
+        $this->data = array_merge($this->data, array("first" => $_POST["first"], "last" => $_POST["last"]));
         if ($_POST["method"] == "eitango-imi") {
             $this->data = array_merge($this->data, array("method" => "eitango-imi"));
         } else {
