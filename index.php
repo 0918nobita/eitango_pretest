@@ -1,6 +1,6 @@
 <?php
 namespace Pretest;
-
+ini_set( 'display_errors', 1 );
 /**
  * index.php
  * .htaccessのmod_rewrite機能によってURLが書き換えられ、いつもこのファイルが最初に読み込まれる。
