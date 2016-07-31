@@ -34,12 +34,16 @@ abstract class Controller
     public function display()
     {
         $template = $this->twig->loadTemplate('base.html.twig');
-        $this->data = array_merge($this->data, array(
+        $this->assign(array(
             'title' => SITE_NAME,
             'site_description' => SITE_DESCRIPTION,
             'content' => $this->view,
             'stylesheet_file_path' => $this->stylesheetPath
         ));
         echo $template->render($this->data);
+    }
+
+    public function assign($array) {
+        $this->data = array_merge($this->data, $array);
     }
 }
