@@ -3,7 +3,7 @@ var method   = document.getElementById('method');
 var order    = document.getElementById('order');
 var quantity = document.getElementById('quantity');
 var button   = document.settings.lastElementChild;
-document.settings.display.addEventListener("click", function() {
+document.settings.display.addEventListener("change", function() {
     var selectorElement = document.settings.display;
     var index = selectorElement.selectedIndex;
     var selectedOption = selectorElement.options[index].value;
@@ -19,11 +19,11 @@ document.settings.display.addEventListener("click", function() {
             order.style.display    = "none";
             quantity.style.display = "none";
             button.style.display   = "none";
-            document.settings.method.dispatchEvent(new Event('click'));
+            document.settings.method.dispatchEvent(new Event('change'));
             break;
     }
 });
-document.settings.method.addEventListener("click", function() {
+document.settings.method.addEventListener("change", function() {
     var selectorElement = document.settings.method;
     var index = selectorElement.selectedIndex;
     var selectedOption = selectorElement.options[index].value;
@@ -37,11 +37,11 @@ document.settings.method.addEventListener("click", function() {
             order.style.display    = "block";
             quantity.style.display = "none";
             button.style.display   = "none";
-            document.settings.order.dispatchEvent(new Event('click'));
+            document.settings.order.dispatchEvent(new Event('change'));
             break;
     }
 });
-document.settings.order.addEventListener("click", function() {
+document.settings.order.addEventListener("change", function() {
     var selectorElement = document.settings.order;
     var index = selectorElement.selectedIndex;
     var selectedOption = selectorElement.options[index].value;
@@ -60,4 +60,4 @@ document.settings.order.addEventListener("click", function() {
             break;
     }
 });
-document.settings.display.dispatchEvent(new Event("click"));
+document.settings.display.dispatchEvent(new Event("change"));
