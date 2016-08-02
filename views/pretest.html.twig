@@ -11,9 +11,15 @@
     <br /><br />
     <div id="table-frame">
         <table>
-            {% for i in words | keys %}
-                <tr><td>{{ words[i]["id"] }}</td><td>{{ words[i]["front"] }}</td><td>{{ words[i]["back"] }}</td></tr>
-            {% endfor %}
+            {% if method == "eitango-imi" %}
+                {% for i in words | keys %}
+                    <tr><td>{{ words[i]["id"] }}</td><td>{{ words[i]["front"] }}</td><td>{{ words[i]["back"] }}</td></tr>
+                {% endfor %}
+            {% else %}
+                {% for i in words | keys %}
+                    <tr><td>{{ words[i]["id"] }}</td><td>{{ words[i]["back"] }}</td><td>{{ words[i]["front"] }}</td></tr>
+                {% endfor %}
+            {% endif %}
         </table>
     </div>
     <div id="page-top">トップ</div>
