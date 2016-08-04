@@ -29,12 +29,12 @@ class TopController extends Controller
                 "first" => $_SESSION["first"],
                 "last" => $_SESSION["last"]
             ));
-            switch ($_SESSION["display"]) {
-                case "table":
-                    $this->assign(array("table_selected" => "selected"));
+            switch ($_SESSION["answer_method"]) {
+                case "touch":
+                    $this->assign(array("touch_selected" => "selected"));
                     break;
-                case "one-by-one":
-                    $this->assign(array("one_by_one_selected" => "selected"));
+                case "type":
+                    $this->assign(array("type_selected" => "selected"));
                     break;
             }
             switch ($_SESSION["method"]) {

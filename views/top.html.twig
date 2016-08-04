@@ -7,10 +7,10 @@
     <form name="settings" action="?controller=pretest" method="POST">
         <p><input type="number" name="first" min="1" max="{{ max }}" value="{{ first }}"required> ～ <input type="number" name="last" min="1" max="{{ max }}" value="{{ last }}" required></p>
         <p id="display">1.
-            <select name="display">
+            <select name="answer_method">
                 <option value="non-selected">選択してください</option>
-                <option value="table" {{ table_selected }}>一覧表示</option>
-                <option value="one-by-one" {{ one_by_one_selected }}>一問ずつ画面切り替え</option>
+                <option value="touch" {{ touch_selected }}>タッチで答えを確認</option>
+                <option value="type" {{ type_selected }}>答えを入力して正誤確認</option>
             </select>
         </p>
         <p id="method" style="display:none;">2.

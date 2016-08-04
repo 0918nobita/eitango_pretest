@@ -43,7 +43,7 @@ class PretestController extends Controller
         $_SESSION["setting"] = "true";
         $_SESSION["first"] = $_POST["first"];
         $_SESSION["last"] = $_POST["last"];
-        $_SESSION["display"] = $_POST["display"];
+        $_SESSION["answer_method"] = $_POST["answer_method"];
         $_SESSION["method"] = $_POST["method"];
         $_SESSION["order"] = $_POST["order"];
         $_SESSION["quantity"] = $_POST["quantity"];

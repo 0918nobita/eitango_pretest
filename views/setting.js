@@ -1,10 +1,10 @@
-var display  = document.getElementById('display');
+var answer_method  = document.getElementById('answer_method');
 var method   = document.getElementById('method');
 var order    = document.getElementById('order');
 var quantity = document.getElementById('quantity');
 var button   = document.settings.lastElementChild;
-document.settings.display.addEventListener("change", function() {
-    var selectorElement = document.settings.display;
+document.settings.answer_method.addEventListener("change", function() {
+    var selectorElement = document.settings.answer_method;
     var index = selectorElement.selectedIndex;
     var selectedOption = selectorElement.options[index].value;
     switch (selectedOption) {
@@ -60,4 +60,4 @@ document.settings.order.addEventListener("change", function() {
             break;
     }
 });
-document.settings.display.dispatchEvent(new Event("change"));
+document.settings.answer_method.dispatchEvent(new Event("change"));
