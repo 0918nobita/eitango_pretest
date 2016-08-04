@@ -29,17 +29,17 @@ class PretestController extends Controller
     public function display()
     {
         $this->validator->checkRange($_POST["first"], $_POST["last"], $this->model->max);
-        $this->assign(array("first" => $_POST["first"], "last" => $_POST["last"]));
-        if ($_POST["method"] == "eitango-imi") {
-            $this->assign(array("method" => "eitango-imi"));
-        } else {
-            $this->assign(array("method" => "imi-eitango"));
-        }
-        if ($_POST["order"] == "num") {
-            $this->assign(array("words" => $this->model->getWords($_POST["first"], $_POST["last"], Models\PretestModel::NUM)));
-        } else {
-            $this->assign(array("words" => $this->model->getWords($_POST["first"], $_POST["last"], Models\PretestModel::RND, $_POST["quantity"])));
-        }
+        $this->assign(array(
+            "first" => $_POST["first"],
+            "last" => $_POST["last"],
+            "method" => ($_POST["method"] == "eitango-imi") ? "eitango-imi" : "imi-eitango",
+            "words" => $this->model->getWords(
+                $_POST["first"],
+                $_POST["last"],
+                ($_POST["order"] == "num") ? Models\PretestModel::NUM : Models\PretestModel::RND,
+                ($_POST["order"] == "rnd") ? $_POST["quantity"] : -1
+            ),
+        ));
         $_SESSION["setting"] = "true";
         $_SESSION["first"] = $_POST["first"];
         $_SESSION["last"] = $_POST["last"];
