@@ -18,17 +18,27 @@ class PretestModel extends Model
     public function __construct()
     {
         parent::__construct();
-        $stmt = $this->db->query("SELECT MAX(id) as id_max FROM words");
-        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        try {
+            $stmt = $this->db->query("SELECT MAX(id) as id_max FROM words");
+            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        } catch(\PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
         $this->max = $result["id_max"];
     }
     
     public function getWords($first, $last, $order, $quantity=0) {
-        $stmt = $this->db->prepare("SELECT * FROM words WHERE id >= :first AND id <= :last");
-        $stmt->bindValue(":first", $first);
-        $stmt->bindValue(":last", $last);
-        $stmt->execute();
-        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        try {
+            $stmt = $this->db->prepare("SELECT * FROM words WHERE id >= :first AND id <= :last");
+            $stmt->bindValue(":first", $first);
+            $stmt->bindValue(":last", $last);
+            $stmt->execute();
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } catch(\PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
         if ($order == PretestModel::RND) {
             shuffle($result);
             if ($quantity) $result = array_splice($result, 0, $quantity);
