@@ -54,13 +54,13 @@
             if (parent.dataset.answer == element.value) {
                 parent.innerHTML = "正解: " + parent.dataset.answer;
                 parent.style.backgroundColor = "#80FF80";
-                if (parent.parentNode.nextElementSibling) {
+                if (parent.parentNode.nextElementSibling && parent.parentNode.nextElementSibling.lastChild.firstChild.focus) {
                     parent.parentNode.nextElementSibling.lastChild.firstChild.focus();
                 }
             } else {
                 parent.innerHTML = "不正解: " + parent.dataset.answer;
                 parent.style.backgroundColor = "#FF8080";
-                if (parent.parentNode.nextElementSibling) {
+                if (parent.parentNode.nextElementSibling && parent.parentNode.nextElementSibling.lastChild.firstChild.focus) {
                     parent.parentNode.nextElementSibling.lastChild.firstChild.focus();
                 }
             }
