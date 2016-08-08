@@ -14,7 +14,18 @@ document.settings.answer_method.addEventListener("change", function() {
             quantity.style.display = "none";
             button.style.display   = "none";
             break;
-        default:
+        case "type":
+            document.settings.method.options[1].setAttribute("disabled", "");
+            document.settings.method.options[2].setAttribute("selected", "");
+            if (document.settings.method.value == "eitango-imi") document.settings.method.value = "imi-eitango";
+            method.style.display   = "block";
+            order.style.display    = "none";
+            quantity.style.display = "none";
+            button.style.display   = "none";
+            document.settings.method.dispatchEvent(new Event('change'));
+            break;
+        case "touch":
+            document.settings.method.options[1].removeAttribute("disabled");
             method.style.display   = "block";
             order.style.display    = "none";
             quantity.style.display = "none";
@@ -33,6 +44,8 @@ document.settings.method.addEventListener("change", function() {
             quantity.style.display = "none";
             button.style.display   = "none";
             break;
+        /*case "eitango-imi":
+            document.settings.answer_method.value = "touch";*/
         default:
             order.style.display    = "block";
             quantity.style.display = "none";
