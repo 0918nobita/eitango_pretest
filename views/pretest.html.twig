@@ -22,15 +22,9 @@
                     {% endfor %}
                 {% endif %}
             {% else %}
-                {% if method == "eitango-imi" %}
-                    {% for i in words | keys %}
-                        <tr><td>{{ words[i]["id"] }}</td><td>{{ words[i]["front"] }}</td><td data-answer="{{ words[i]["back"] }}"><input type="text"></td></tr>
-                    {% endfor %}
-                {% else %}
-                    {% for i in words | keys %}
-                        <tr><td>{{ words[i]["id"] }}</td><td>{{ words[i]["back"] }}</td><td data-answer="{{ words[i]["front"] }}"><input type="text" onkeyup="checkAnswer(event.keyCode, this);"></td></tr>
-                    {% endfor %}
-                {% endif %}
+                {% for i in words | keys %}
+                    <tr><td>{{ words[i]["id"] }}</td><td>{{ words[i]["back"] }}</td><td data-answer="{{ words[i]["front"] }}"><input type="text" onkeyup="checkAnswer(event.keyCode, this);"></td></tr>
+                {% endfor %}
             {% endif %}
         </table>
     </div>
