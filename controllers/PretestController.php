@@ -28,10 +28,10 @@ class PretestController extends Controller
 
     public function display()
     {
-        $this->validator->checkRange($_POST["first"], $_POST["last"], $this->model->max);
+        list($first, $last) = $this->validator->checkRange($_POST["first"], $_POST["last"], $this->model->max);
         $this->assign(array(
-            "first" => $_POST["first"],
-            "last" => $_POST["last"],
+            "first" => $first,
+            "last" => $last,
             "answer_method" => ($_POST["answer_method"] == "touch") ? "touch" : "type",
             "method" => ($_POST["method"] == "eitango-imi") ? "eitango-imi" : "imi-eitango",
             "quantity" => ($_POST["order"] == "rnd" && ($_POST["quantity"] != 0) && ($_POST["quantity"] < $_POST["last"] - $_POST["first"] + 1)) ? $_POST["quantity"] : $_POST["last"] - $_POST["first"] + 1,
