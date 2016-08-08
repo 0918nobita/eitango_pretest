@@ -22,6 +22,15 @@
                     {% endfor %}
                 {% endif %}
             {% else %}
+                {% if method == "eitango-imi" %}
+                    {% for i in words | keys %}
+                        <tr><td>{{ words[i]["id"] }}</td><td>{{ words[i]["front"] }}</td><td data-answer="{{ words[i]["back"] }}"><input type="text"></td></tr>
+                    {% endfor %}
+                {% else %}
+                    {% for i in words | keys %}
+                        <tr><td>{{ words[i]["id"] }}</td><td>{{ words[i]["back"] }}</td><td data-answer="{{ words[i]["front"] }}"><input type="text" onkeyup="checkAnswer(event.keyCode, this);"></td></tr>
+                    {% endfor %}
+                {% endif %}
             {% endif %}
         </table>
     </div>
@@ -43,4 +52,28 @@
             }
         });
     });
+
+    var answers = 0;
+    function checkAnswer(code, element) {
+        if (code === 13) {
+            var parent = element.parentNode;
+            if (parent.dataset.answer == element.value) {
+                parent.innerHTML = "正解: " + parent.dataset.answer;
+                parent.style.backgroundColor = "#80FF80";
+                if (parent.parentNode.nextElementSibling) {
+                    parent.parentNode.nextElementSibling.lastChild.firstChild.focus();
+                }
+            } else {
+                parent.innerHTML = "不正解: " + parent.dataset.answer;
+                parent.style.backgroundColor = "#FF8080";
+                if (parent.parentNode.nextElementSibling) {
+                    parent.parentNode.nextElementSibling.lastChild.firstChild.focus();
+                }
+            }
+            answers++;
+            if (answers >= {{ quantity }}) {
+                alert("終了！お疲れ様でした");
+            }
+        }
+    }
 </script>

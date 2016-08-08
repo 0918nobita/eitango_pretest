@@ -34,6 +34,7 @@ class PretestController extends Controller
             "last" => $_POST["last"],
             "answer_method" => ($_POST["answer_method"] == "touch") ? "touch" : "type",
             "method" => ($_POST["method"] == "eitango-imi") ? "eitango-imi" : "imi-eitango",
+            "quantity" => $_POST["quantity"],
             "words" => $this->model->getWords(
                 $_POST["first"],
                 $_POST["last"],
