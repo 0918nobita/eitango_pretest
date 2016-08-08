@@ -18,6 +18,9 @@ class Dispatcher
             case 'pretest':
                 $controllerInstance = new Controllers\PretestController();
                 break;
+            case 'ranking':
+                $controllerInstance = new Controllers\RankingController();
+                break;
             case 'error':
                 $controllerInstance = new Controllers\ErrorController();
                 break;
