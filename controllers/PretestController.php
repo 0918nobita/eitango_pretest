@@ -29,24 +29,25 @@ class PretestController extends Controller
     public function display()
     {
         list($first, $last) = $this->validator->checkRange($_POST["first"], $_POST["last"], $this->model->max);
+        list($answerMethod, $method) = $this->validator->checkMethod($_POST["answer_method"], $_POST["method"]);
         $this->assign(array(
             "first" => $first,
             "last" => $last,
-            "answer_method" => ($_POST["answer_method"] == "touch") ? "touch" : "type",
-            "method" => ($_POST["method"] == "eitango-imi") ? "eitango-imi" : "imi-eitango",
-            "quantity" => ($_POST["order"] == "rnd" && ($_POST["quantity"] != 0) && ($_POST["quantity"] < $_POST["last"] - $_POST["first"] + 1)) ? $_POST["quantity"] : $_POST["last"] - $_POST["first"] + 1,
+            "answer_method" => $answerMethod,
+            "method" => $method,
+            "quantity" => ($_POST["order"] == "rnd" && ($_POST["quantity"] != 0) && ($_POST["quantity"] < $last - $first + 1)) ? $_POST["quantity"] : $last - $first + 1,
             "words" => $this->model->getWords(
-                $_POST["first"],
-                $_POST["last"],
+                $first,
+                $last,
                 ($_POST["order"] == "num") ? Models\PretestModel::NUM : Models\PretestModel::RND,
                 ($_POST["order"] == "rnd") ? $_POST["quantity"] : -1
             ),
         ));
         $_SESSION["setting"] = "true";
-        $_SESSION["first"] = $_POST["first"];
-        $_SESSION["last"] = $_POST["last"];
-        $_SESSION["answer_method"] = $_POST["answer_method"];
-        $_SESSION["method"] = $_POST["method"];
+        $_SESSION["first"] = $first;
+        $_SESSION["last"] = $last;
+        $_SESSION["answer_method"] = $answerMethod;
+        $_SESSION["method"] = $method;
         $_SESSION["order"] = $_POST["order"];
         $_SESSION["quantity"] = $_POST["quantity"];
         parent::display();
