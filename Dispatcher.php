@@ -15,14 +15,17 @@ class Dispatcher
         $controller = '';
         if (isset($_GET['controller'])) $controller = $_GET['controller'];
         switch ($controller) {
+            case 'error':
+                $controllerInstance = new Controllers\ErrorController();
+                break;
+            case 'event':
+                $controllerInstance = new Controllers\EventController();
+                break;
             case 'pretest':
                 $controllerInstance = new Controllers\PretestController();
                 break;
             case 'ranking':
                 $controllerInstance = new Controllers\RankingController();
-                break;
-            case 'error':
-                $controllerInstance = new Controllers\ErrorController();
                 break;
             default:
                 $controllerInstance = new Controllers\TopController();
