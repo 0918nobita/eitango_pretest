@@ -14,6 +14,12 @@ class EventController extends Controller
     public function display()
     {
         $this->view = 'event.html.twig';
+        list($present, $future, $past) = $this->model->getEvents();
+        $this->assign(array(
+            'present' => $present,
+            'future' => $future,
+            'past' => $past
+        ));
         parent::display();
     }
 }
