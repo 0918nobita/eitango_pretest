@@ -12,6 +12,26 @@ namespace Pretest\Models;
 
 class Validator
 {
+    public function checkMethod($answer_method, $method) {
+        switch ($answer_method) {
+            case "touch":
+            case "type":
+                break;
+            default:
+                header("location: ./?controller=error");
+                break;
+        }
+        switch ($method) {
+            case "eitango-imi":
+            case "imi-eitango":
+                break;
+            default:
+                header("location: ./?controller=error");
+                break;
+        }
+        return array($answer_method, $method);
+    }
+
     public function checkRange($first, $last, $max) {
         if ($first < 1 || $last > $max || $first > $last) header("location: ./?controller=error");
         return array($first, $last);
