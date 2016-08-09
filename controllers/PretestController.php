@@ -30,17 +30,19 @@ class PretestController extends Controller
     {
         list($first, $last) = $this->validator->checkRange($_POST["first"], $_POST["last"], $this->model->max);
         list($answerMethod, $method) = $this->validator->checkMethod($_POST["answer_method"], $_POST["method"]);
+        $order = $this->validator->checkOrder($_POST["order"]);
+        $quantity = $this->validator->checkQuantity($first, $last, $_POST["quantity"], $_POST["order"]);
         $this->assign(array(
             "first" => $first,
             "last" => $last,
             "answer_method" => $answerMethod,
             "method" => $method,
-            "quantity" => ($_POST["order"] == "rnd" && ($_POST["quantity"] != 0) && ($_POST["quantity"] < $last - $first + 1)) ? $_POST["quantity"] : $last - $first + 1,
+            "quantity" => $quantity,
             "words" => $this->model->getWords(
                 $first,
                 $last,
-                ($_POST["order"] == "num") ? Models\PretestModel::NUM : Models\PretestModel::RND,
-                ($_POST["order"] == "rnd") ? $_POST["quantity"] : -1
+                ($order == "num") ? Models\PretestModel::NUM : Models\PretestModel::RND,
+                ($order == "rnd") ? $quantity : -1
             ),
         ));
         $_SESSION["setting"] = "true";
@@ -48,8 +50,8 @@ class PretestController extends Controller
         $_SESSION["last"] = $last;
         $_SESSION["answer_method"] = $answerMethod;
         $_SESSION["method"] = $method;
-        $_SESSION["order"] = $_POST["order"];
-        $_SESSION["quantity"] = $_POST["quantity"];
+        $_SESSION["order"] = $order;
+        $_SESSION["quantity"] = $quantity;
         parent::display();
     }
 }
