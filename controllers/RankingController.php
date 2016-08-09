@@ -1,6 +1,5 @@
 <?php
 namespace Pretest\Controllers;
-use Pretest\Models;
 
 /**
  * RankingController クラス
@@ -12,14 +11,7 @@ use Pretest\Models;
  */
 
 class RankingController extends Controller {
-    protected $view = "ranking.html.twig";
-    protected $stylesheetPath = "./views/css/ranking.css";
-    
-    public function __construct()
-    {
-        parent::_construct();
-        $this->model = new RankingModel();
-    }
+    protected $view = 'ranking.html.twig';
     
     public function display()
     {

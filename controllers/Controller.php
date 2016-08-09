@@ -13,7 +13,7 @@ abstract class Controller
 {
     protected $model; // モデルクラスのインスタンスが代入される
     protected $view; // テンプレートファイルの名前
-    protected $stylesheetPath; // スタイルシートファイルのパス
+    protected $stylesheetPath = 'top.css'; // スタイルシートファイルのパス
     protected $twig; // Twigインスタンスが代入される
     protected $data = array(); // テンプレートファイルに埋め込むデータ
 
@@ -38,7 +38,7 @@ abstract class Controller
             'title' => SITE_NAME,
             'site_description' => SITE_DESCRIPTION,
             'content' => $this->view,
-            'stylesheet_file_path' => $this->stylesheetPath
+            'stylesheet_file_path' => './views/css/' . $this->stylesheetPath
         ));
         echo $template->render($this->data);
     }

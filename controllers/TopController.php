@@ -13,7 +13,7 @@ use Pretest\Models\PretestModel;
 class TopController extends Controller
 {
     protected $view = 'top.html.twig';
-    protected $stylesheetPath = './views/css/top.css';
+    protected $stylesheetPath = 'top.css';
 
     public function __construct()
     {
@@ -23,36 +23,36 @@ class TopController extends Controller
 
     public function display()
     {
-        $this->assign(array("max" => $this->model->max));
-        if (isset($_SESSION["setting"])) {
+        $this->assign(array('max' => $this->model->max));
+        if (isset($_SESSION['setting'])) {
             $this->assign(array(
-                "first" => $_SESSION["first"],
-                "last" => $_SESSION["last"]
+                'first' => $_SESSION['first'],
+                'last' => $_SESSION['last']
             ));
-            switch ($_SESSION["answer_method"]) {
-                case "touch":
-                    $this->assign(array("touch_selected" => "selected"));
+            switch ($_SESSION['answer_method']) {
+                case 'touch':
+                    $this->assign(array('touch_selected' => 'selected'));
                     break;
-                case "type":
-                    $this->assign(array("type_selected" => "selected"));
-                    break;
-            }
-            switch ($_SESSION["method"]) {
-                case "eitango-imi":
-                    $this->assign(array("eitango_imi_selected" => "selected"));
-                    break;
-                case "imi-eitango":
-                    $this->assign(array("imi_eitango_selected" => "selected"));
+                case 'type':
+                    $this->assign(array('type_selected' => 'selected'));
                     break;
             }
-            switch ($_SESSION["order"]) {
-                case "num":
-                    $this->assign(array("num_selected" => "selected"));
+            switch ($_SESSION['method']) {
+                case 'eitango-imi':
+                    $this->assign(array('eitango_imi_selected' => 'selected'));
                     break;
-                case "rnd":
-                    $this->assign(array("rnd_selected" => "selected"));
-                    if (isset($_SESSION["quantity"]) && $_SESSION["quantity"] != 0) {
-                        $this->assign(array("quantity" => $_SESSION["quantity"]));
+                case 'imi-eitango':
+                    $this->assign(array('imi_eitango_selected' => 'selected'));
+                    break;
+            }
+            switch ($_SESSION['order']) {
+                case 'num':
+                    $this->assign(array('num_selected' => 'selected'));
+                    break;
+                case 'rnd':
+                    $this->assign(array('rnd_selected' => 'selected'));
+                    if (isset($_SESSION['quantity']) && $_SESSION['quantity'] != 0) {
+                        $this->assign(array('quantity' => $_SESSION['quantity']));
                     }
                     break;
             }
