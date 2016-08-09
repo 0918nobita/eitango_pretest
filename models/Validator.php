@@ -32,6 +32,26 @@ class Validator
         return array($answer_method, $method);
     }
 
+    public function checkOrder($order) {
+        switch ($order) {
+            case "num":
+            case "rnd":
+                break;
+            default:
+                header("location: ./?controller=error");
+                break;
+        }
+        return $order;
+    }
+
+    public function checkQuantity($first, $last, $quantity, $order) {
+        if (($order == "rnd") && ($quantity != 0) && ($quantity < $last - $first + 1)) {
+            return $quantity;
+        } else {
+            return $last - $first + 1;
+        }
+    }
+
     public function checkRange($first, $last, $max) {
         if ($first < 1 || $last > $max || $first > $last) header("location: ./?controller=error");
         return array($first, $last);
