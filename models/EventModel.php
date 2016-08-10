@@ -66,11 +66,25 @@ class EventModel extends Model
     public function rank($nickname, $score, $category)
     {
         try {
-            $stmt = $this->db->prepare('INSERT INTO ranking(nickname, score, category) VALUES(:nickname, :score, :category)');
-            $stmt->bindValue(":nickname", $nickname, \PDO::PARAM_STR);
-            $stmt->bindValue(":score", $score, \PDO::PARAM_INT);
-            $stmt->bindValue(":category", $category, \PDO::PARAM_INT);
+            $stmt = $this->db->prepare('SELECT count(*) as count, score FROM ranking WHERE nickname = :nickname');
+            $stmt->bindValue(':nickname', $nickname, \PDO::PARAM_STR);
             $stmt->execute();
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            if ($result[0]["count"] >= 1) {
+                $previousScore = $result[0]["score"];
+                if ($score > $previousScore) {
+                    $stmt = $this->db->prepare('UPDATE ranking SET score = :score WHERE nickname = :nickname');
+                    $stmt->bindValue(':nickname', $nickname, \PDO::PARAM_STR);
+                    $stmt->bindValue(':score', $score, \PDO::PARAM_INT);
+                    $stmt->execute();
+                }
+            } else {
+                $stmt = $this->db->prepare('INSERT INTO ranking(nickname, score, category) VALUES(:nickname, :score, :category)');
+                $stmt->bindValue(":nickname", $nickname, \PDO::PARAM_STR);
+                $stmt->bindValue(":score", $score, \PDO::PARAM_INT);
+                $stmt->bindValue(":category", $category, \PDO::PARAM_INT);
+                $stmt->execute();
+            }
         } catch(\PDOException $e) {
             echo $e->getMessage();
             die();
