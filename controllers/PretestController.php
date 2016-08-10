@@ -43,9 +43,11 @@ class PretestController extends Controller
                 $last,
                 ($order == 'num') ? Models\PretestModel::NUM : Models\PretestModel::RND,
                 ($order == 'rnd') ? $quantity : -1
-            ),
-            'event' => (isset($_POST['event']) && ($_POST['event'] == 'true')) ? 'true' : 'false',
-            'id' => (isset($_POST['event']) && ($_POST['event'] == 'true')) ? $_POST['id'] : -1
+            )
+        ));
+        if (isset($_POST['event'])) $this->assign(array(
+            'event' => 'true',
+            'category' => $_POST['category']
         ));
         $_SESSION['setting'] = 'true';
         $_SESSION['first'] = $first;

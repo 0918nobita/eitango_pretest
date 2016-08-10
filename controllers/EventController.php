@@ -26,9 +26,9 @@ class EventController extends Controller
     public function detail()
     {
         $this->view = 'eventDetail.html.twig';
-        list($id, $name, $first, $last, $quantity, $start, $end, $held) = $this->model->getEventInfo($_GET['id']);
+        list($category, $name, $first, $last, $quantity, $start, $end, $held) = $this->model->getEventInfo($_GET['id']);
         $this->assign(array(
-            'id' => $id,
+            'category' => $category,
             'name' => $name,
             'first' => $first,
             'last' => $last,
