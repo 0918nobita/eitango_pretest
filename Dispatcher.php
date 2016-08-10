@@ -24,9 +24,6 @@ class Dispatcher
             case 'pretest':
                 $controllerInstance = new Controllers\PretestController();
                 break;
-            case 'ranking':
-                $controllerInstance = new Controllers\RankingController();
-                break;
             default:
                 $controllerInstance = new Controllers\TopController();
                 break;
