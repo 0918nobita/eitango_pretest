@@ -3,6 +3,38 @@ namespace Pretest\Models;
 
 class EventModel extends Model
 {
+    public function getEventInfo($id)
+    {
+        try {
+            $stmt = $this->db->prepare('SELECT * FROM ranking_category WHERE id = :id');
+            $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
+            $stmt->execute();
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            if (count($result) == 0) header('Location: ./?controller=error');
+            $name = $result[0]['name'];
+            $first = $result[0]['first'];
+            $last = $result[0]['last'];
+            $quantity = $result[0]['quantity'];
+            $start = $result[0]['start'];
+            $end = $result[0]['end'];
+            date_default_timezone_set('Asia/Tokyo');
+            $now = new \DateTime();
+            $startDate = \DateTime::createFromFormat('Y-m-d H:i:s', $result[0]['start']);
+            $endDate = \DateTime::createFromFormat('Y-m-d H:i:s', $result[0]['end']);
+            if ($now >= $startDate && $now <= $endDate) {
+                $held = 'present';
+            } elseif ($now < $startDate) {
+                $held = 'future';
+            } else {
+                $held = 'past';
+            }
+        } catch(\PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
+        return array($name, $first, $last, $quantity, $start, $end, $held);
+    }
+
     public function getEvents()
     {
         try {

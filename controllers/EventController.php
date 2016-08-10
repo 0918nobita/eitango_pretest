@@ -22,4 +22,20 @@ class EventController extends Controller
         ));
         parent::display();
     }
+
+    public function detail()
+    {
+        $this->view = 'eventDetail.html.twig';
+        list($name, $first, $last, $quantity, $start, $end, $held) = $this->model->getEventInfo($_GET['id']);
+        $this->assign(array(
+            'name' => $name,
+            'first' => $first,
+            'last' => $last,
+            'quantity' => $quantity,
+            'start' => $start,
+            'end' => $end,
+            'held' => $held
+        ));
+        parent::display();
+    }
 }

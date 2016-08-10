@@ -2,19 +2,19 @@
 <div id="main">
     <h2>現在開催中のイベント</h2>
     {% for event in present %}
-        <p><b>{{ event["name"] }}</b><br />
+        <p><a href="./?controller=event&action=detail&id={{ event['id'] }}"><b>{{ event["name"] }}</b></a><br />
             出題範囲：{{ event["first"] }} ～ {{ event["last"] }}　問題数：{{ event["quantity"] }}<br />
             {{ event["start"] }} ～ {{ event["end"] }}</p>
     {% endfor %}
     <h2>今後開催予定のイベント</h2>
     {% for event in future %}
-        <p><b>{{ event["name"] }}</b><br />
+        <p><a href="./?controller=event&action=detail&id={{ event['id'] }}"><b>{{ event["name"] }}</b></a><br />
             出題範囲：{{ event["first"] }} ～ {{ event["last"] }}　問題数：{{ event["quantity"] }}<br />
             {{ event["start"] }} ～ {{ event["end"] }}</p>
     {% endfor %}
     <h2>過去に開催したイベント</h2>
     {% for event in past %}
-        <p><b>{{ event["name"] }}</b><br />
+        <p><a href="./?controller=event&action=detail&id={{ event['id'] }}"><b>{{ event["name"] }}</b></a><br />
             出題範囲：{{ event["first"] }} ～ {{ event["last"] }}　問題数：{{ event["quantity"] }}<br />
             {{ event["start"] }} ～ {{ event["end"] }}</p>
     {% endfor %}
