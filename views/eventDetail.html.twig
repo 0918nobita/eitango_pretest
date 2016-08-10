@@ -4,7 +4,15 @@
     <p>問題数：{{ quantity }}</p>
     <p>開催期間：{{ start }} ～ {{ end }}</p>
     {% if held == "present" %}
-        <p><input type="button" value="挑戦する！"></p>
+        <form method="post" action="./?controller=pretest">
+            <input type="hidden" name="first" value="{{ first }}">
+            <input type="hidden" name="last" value="{{ last }}">
+            <input type="hidden" name="answer_method" value="type">
+            <input type="hidden" name="method" value="imi-eitango">
+            <input type="hidden" name="order" value="rnd">
+            <input type="hidden" name="quantity" value="{{ quantity }}">
+            <input type="submit" value="挑戦する！">
+        </form>
     {% elseif held == "future" %}
         <p>まだ開催されていません。</p>
     {% else %}
