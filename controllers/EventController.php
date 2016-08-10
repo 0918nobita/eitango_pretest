@@ -26,8 +26,9 @@ class EventController extends Controller
     public function detail()
     {
         $this->view = 'eventDetail.html.twig';
-        list($name, $first, $last, $quantity, $start, $end, $held) = $this->model->getEventInfo($_GET['id']);
+        list($id, $name, $first, $last, $quantity, $start, $end, $held) = $this->model->getEventInfo($_GET['id']);
         $this->assign(array(
+            'id' => $id,
             'name' => $name,
             'first' => $first,
             'last' => $last,
@@ -36,6 +37,18 @@ class EventController extends Controller
             'end' => $end,
             'held' => $held
         ));
+        parent::display();
+    }
+
+    public function rank()
+    {
+        $this->model->rank($_POST['nickname'], $_POST['score'], $_POST['category']);
+        header("Location: ./?controller=event&action=ranking");
+    }
+
+    public function ranking()
+    {
+        $this->view = 'ranking.html.twig';
         parent::display();
     }
 }

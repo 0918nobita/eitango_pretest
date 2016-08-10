@@ -32,7 +32,7 @@ class EventModel extends Model
             echo $e->getMessage();
             die();
         }
-        return array($name, $first, $last, $quantity, $start, $end, $held);
+        return array($id, $name, $first, $last, $quantity, $start, $end, $held);
     }
 
     public function getEvents()
@@ -61,5 +61,19 @@ class EventModel extends Model
             die();
         }
         return array($present, $future, $past);
+    }
+
+    public function rank($nickname, $score, $category)
+    {
+        try {
+            $stmt = $this->db->prepare('INSERT INTO ranking(nickname, score, category) VALUES(:nickname, :score, :category)');
+            $stmt->bindValue(":nickname", $nickname, \PDO::PARAM_STR);
+            $stmt->bindValue(":score", $score, \PDO::PARAM_INT);
+            $stmt->bindValue(":category", $category, \PDO::PARAM_INT);
+            $stmt->execute();
+        } catch(\PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
     }
 }
