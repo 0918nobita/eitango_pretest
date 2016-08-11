@@ -76,10 +76,12 @@
                 alert(correct + "問正解！");
                 if ("{{ event }}" == "true") {
                     var nickname = window.prompt("ニックネームを入力してください", "");
-                    var score = correct;
-                    $(':hidden[name="nickname"]').val(nickname);
-                    $(':hidden[name="score"]').val(score);
-                    $('form').submit();
+                    if (nickname != null) {
+                        var score = correct;
+                        $(':hidden[name="nickname"]').val(nickname);
+                        $(':hidden[name="score"]').val(score);
+                        $('form').submit();
+                    }
                 }
             }
         }
