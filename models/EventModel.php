@@ -66,11 +66,11 @@ class EventModel extends Model
     public function rank($nickname, $score, $category)
     {
         try {
-            $stmt = $this->db->prepare('SELECT count(*) as count, score FROM ranking WHERE nickname = :nickname');
+            $stmt = $this->db->prepare('SELECT count(*) as count, score, category FROM ranking WHERE nickname = :nickname');
             $stmt->bindValue(':nickname', $nickname, \PDO::PARAM_STR);
             $stmt->execute();
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-            if ($result[0]["count"] >= 1) {
+            if (($result[0]['category'] == $category) && ($result[0]["count"] >= 1)) {
                 $previousScore = $result[0]["score"];
                 if ($score > $previousScore) {
                     $stmt = $this->db->prepare('UPDATE ranking SET score = :score WHERE nickname = :nickname');
@@ -89,5 +89,19 @@ class EventModel extends Model
             echo $e->getMessage();
             die();
         }
+    }
+
+    public function raking($category)
+    {
+        try {
+            $stmt = $this->db->prepare('SELECT * FROM ranking WHERE category = :category ORDER BY score DESC');
+            $stmt->bindValue(':category', $category, \PDO::PARAM_INT);
+            $stmt->execute();
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } catch(\PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
+        return $result;
     }
 }

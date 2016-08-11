@@ -43,12 +43,23 @@ class EventController extends Controller
     public function rank()
     {
         $this->model->rank($_POST['nickname'], $_POST['score'], $_POST['category']);
-        header("Location: ./?controller=event&action=ranking");
+        header("Location: ./?controller=event&action=ranking&category=" . $_POST['category']);
     }
 
     public function ranking()
     {
         $this->view = 'ranking.html.twig';
+        list($category, $name, $first, $last, $quantity, $start, $end, $held) = $this->model->getEventInfo($_GET['category']);
+        $this->assign(array(
+            'ranking' => $this->model->raking($category),
+            'name' => $name,
+            'first' => $first,
+            'last' => $last,
+            'quantity' => $quantity,
+            'start' => $start,
+            'end' => $end,
+            'held' => $held
+        ));
         parent::display();
     }
 }
