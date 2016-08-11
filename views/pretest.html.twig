@@ -57,33 +57,42 @@
     function checkAnswer(code, element) {
         if (code === 13) {
             var parent = element.parentNode;
-            if (parent.dataset.answer == element.value) {
-                parent.innerHTML = "正解: " + parent.dataset.answer;
-                parent.style.backgroundColor = "#80FF80";
-                if (parent.parentNode.nextElementSibling && parent.parentNode.nextElementSibling.lastChild.firstChild.focus) {
-                    parent.parentNode.nextElementSibling.lastChild.firstChild.focus();
-                }
-                correct++;
-            } else {
-                parent.innerHTML = "不正解: " + parent.dataset.answer;
-                parent.style.backgroundColor = "#FF8080";
-                if (parent.parentNode.nextElementSibling && parent.parentNode.nextElementSibling.lastChild.firstChild.focus) {
-                    parent.parentNode.nextElementSibling.lastChild.firstChild.focus();
-                }
-            }
-            answers++;
-            if (answers >= {{ quantity }}) {
-                alert(correct + "問正解！");
-                if ("{{ event }}" == "true") {
-                    var nickname = window.prompt("ニックネームを入力してください", "");
-                    if (nickname != null) {
-                        var score = correct;
-                        $(':hidden[name="nickname"]').val(nickname);
-                        $(':hidden[name="score"]').val(score);
-                        $('form').submit();
+            var d = new $.Deferred();
+            d.resolve();
+            d.promise().then(function() {
+                if (parent.dataset.answer == element.value) {
+                    parent.innerHTML = "正解: " + parent.dataset.answer;
+                    parent.style.backgroundColor = "#80FF80";
+                    if (parent.parentNode.nextElementSibling && parent.parentNode.nextElementSibling.lastChild.firstChild.focus) {
+                        parent.parentNode.nextElementSibling.lastChild.firstChild.focus();
+                    }
+                    correct++;
+                } else {
+                    parent.innerHTML = "不正解: " + parent.dataset.answer;
+                    parent.style.backgroundColor = "#FF8080";
+                    if (parent.parentNode.nextElementSibling && parent.parentNode.nextElementSibling.lastChild.firstChild.focus) {
+                        parent.parentNode.nextElementSibling.lastChild.firstChild.focus();
                     }
                 }
-            }
+                answers++;
+            }).then(function() {
+                if (answers >= {{ quantity }}) {
+                    alert(correct + "問正解！");
+                    if ("{{ event }}" == "true") {
+                        do {
+                            var nickname = window.prompt("ニックネームを入力してください(必須, 1文字以上10文字以下)", "");
+                        } while(((nickname != null) && (nickname == "")) || ((nickname != null) && (nickname.length > 10)));
+                        if (nickname != null) {
+                            var score = correct;
+                            $(':hidden[name="nickname"]').val(nickname);
+                            $(':hidden[name="score"]').val(score);
+                            $('form').submit();
+                        } else {
+                            location.href="./?controller=event&action=ranking&category={{ category }}";
+                        }
+                    }
+                }
+            });
         }
     }
 </script>
