@@ -14,16 +14,16 @@
             {% if answer_method == "touch" %}
                 {% if method == "eitango-imi" %}
                     {% for i in words | keys %}
-                        <tr><td>{{ words[i]["id"] }}</td><td>{{ words[i]["front"] }}</td><td class="cover">{{ words[i]["back"] }}</td></tr>
+                        <tr><td>{{ words[i]["id"] }}</td><td class="problem"><div>【{{ words[i]["class"] }}】<br />{{ words[i]["front"] }}</div></td><td class="cover">{{ words[i]["back"] }}</td></tr>
                     {% endfor %}
                 {% else %}
                     {% for i in words | keys %}
-                        <tr><td>{{ words[i]["id"] }}</td><td>{{ words[i]["back"] }}</td><td class="cover">{{ words[i]["front"] }}</td></tr>
+                        <tr><td>{{ words[i]["id"] }}</td><td class="problem"><div>【{{ words[i]["class"] }}】<br />{{ words[i]["back"] }}</div></td><td class="cover">{{ words[i]["front"] }}</td></tr>
                     {% endfor %}
                 {% endif %}
             {% else %}
                 {% for i in words | keys %}
-                    <tr><td>{{ words[i]["id"] }}</td><td>{{ words[i]["back"] }}</td><td data-answer="{{ words[i]["front"] }}"><input type="text" onkeyup="checkAnswer(event.keyCode, this);"></td></tr>
+                    <tr><td>{{ words[i]["id"] }}</td><td class="problem"><div>【{{ words[i]["class"] }}】<br />{{ words[i]["back"] }}</div></td><td data-answer="{{ words[i]["front"] }}"><input type="text" onkeyup="checkAnswer(event.keyCode, this);"></td></tr>
                 {% endfor %}
             {% endif %}
         </table>
@@ -38,6 +38,7 @@
     </form>
 </div>
 <script>
+    document.body.addEventListener('touchstart', function() {});
     $(function(){
         $("#page-top").click(function(){
             $("html,body").animate({scrollTop:0});
