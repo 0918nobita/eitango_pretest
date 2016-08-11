@@ -2,8 +2,10 @@
 <div id="main">
     {% if method == "eitango-imi" %}
         <p>英単語を見て、意味を答えてください。<br />カーソルを重ねている間だけ、答えが表示されます。</p>
-    {% elseif method == "imi-eitango" %}
+    {% elseif method == "imi-eitango" and answer_method == "touch" %}
         <p>意味を見て、英単語を答えてください。<br />カーソルを重ねている間だけ、答えが表示されます。</p>
+    {% else %}
+        <p>入力欄に英単語を入力して、改行で正誤確認してください。</p>
     {% endif %}
     <p>(Google ChromeとSafari以外のブラウザでは発音機能が利用できません。ご了承ください。)</p>
     <input type="button" value="すべて選択解除" onClick="uncheckAll();">
