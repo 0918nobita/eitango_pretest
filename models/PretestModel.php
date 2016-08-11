@@ -3,11 +3,11 @@ namespace Pretest\Models;
 
 /**
  * PretestModel クラス
- * プレテスト画面で使用する英単語データをデータベースから取得し連想配列に整形してPretestControllerに返す
- * @access public
+ * プレテスト画面で使用する英単語データをデータベースから取得し連想配列に整形してPretestControllerに返す。
  * @author 0918nobita
  * @package Pretest\Models
  */
+
 class PretestModel extends Model
 {
     public $max;

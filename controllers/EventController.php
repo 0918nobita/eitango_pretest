@@ -3,6 +3,14 @@ namespace Pretest\Controllers;
 
 use Pretest\Models;
 
+/**
+ * EventController クラス
+ * イベント一覧ページ、イベント詳細ページ、ランキングページの表示や、
+ * ランキングに掲載する処理をモデルに依頼する役割を担う。
+ * @author 0918nobita
+ * @package Pretest\Controllers
+ */
+
 class EventController extends Controller
 {
     public function __construct()

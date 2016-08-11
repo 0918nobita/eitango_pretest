@@ -4,7 +4,6 @@ namespace Pretest\Models;
 /**
  * Model 抽象クラス
  * コンストラクタでデータベースとの接続処理を実装する
- * @access public
  * @author 0918nobita
  * @package Pretest\Models
  */
