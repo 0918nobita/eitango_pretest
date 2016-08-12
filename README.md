@@ -33,10 +33,10 @@ jQuery 3.1.0 (Compressed) 本体を``views``フォルダに保存して使用し
 ```sql
 -- Crate database
 CREATE DATABASE 任意のDB名  DEFAULT CHARACTER SET utf8;
-
+  
 -- Change database
 use 作成したDB名
-
+  
 -- Create tables
 CREATE TABLE words (  
   id int(11) NOT NULL AUTO_INCREMENT,  
@@ -44,7 +44,27 @@ CREATE TABLE words (
   front text,  
   back text,  
   PRIMARY KEY (id)  
-) ENGINE=InnoDB AUTO_INCREMENT=1201 DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+  
+CREATE TABLE ranking_category (  
+  id int(11) NOT NULL AUTO_INCREMENT,  
+  name text NOT NULL UNIQUE,  
+  first int(11) NOT NULL DEFAULT '1',  
+  last int(11) NOT NULL DEFAULT '1300',  
+  quantity int(11),  
+  start datetime,  
+  end datetime,  
+  PRIMARY KEY (id)  
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+  
+CREATE TABLE ranking (  
+  id int(11) NOT NULL AUTO_INCREMENT,  
+  nickname text NOT NULL DEFAULT '名無しさん',  
+  score int(11) NOT NULL DEFAULT '0',  
+  category int(11) NOT NULL
+  PRIMARY KEY (id)  
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+
 ```
 
 ## アプリケーションの実行方法
