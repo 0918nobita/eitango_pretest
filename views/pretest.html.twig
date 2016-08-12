@@ -2,8 +2,10 @@
 <div id="main">
     {% if method == "eitango-imi" %}
         <p>英単語を見て、意味を答えてください。<br />カーソルを重ねている間だけ、答えが表示されます。</p>
-    {% elseif method == "imi-eitango" %}
+    {% elseif method == "imi-eitango" and answer_method == "touch" %}
         <p>意味を見て、英単語を答えてください。<br />カーソルを重ねている間だけ、答えが表示されます。</p>
+    {% else %}
+        <p>入力欄に英単語を入力して、改行で正誤確認してください。</p>
     {% endif %}
     <p>(Google ChromeとSafari以外のブラウザでは発音機能が利用できません。ご了承ください。)</p>
     <input type="button" value="すべて選択解除" onClick="uncheckAll();">
@@ -14,16 +16,16 @@
             {% if answer_method == "touch" %}
                 {% if method == "eitango-imi" %}
                     {% for i in words | keys %}
-                        <tr><td>{{ words[i]["id"] }}</td><td>{{ words[i]["front"] }}</td><td class="cover">{{ words[i]["back"] }}</td></tr>
+                        <tr><td>{{ words[i]["id"] }}</td><td class="problem"><div>【{{ words[i]["class"] }}】<br />{{ words[i]["front"] }}</div></td><td class="cover">{{ words[i]["back"] }}</td></tr>
                     {% endfor %}
                 {% else %}
                     {% for i in words | keys %}
-                        <tr><td>{{ words[i]["id"] }}</td><td>{{ words[i]["back"] }}</td><td class="cover">{{ words[i]["front"] }}</td></tr>
+                        <tr><td>{{ words[i]["id"] }}</td><td class="problem"><div>【{{ words[i]["class"] }}】<br />{{ words[i]["back"] }}</div></td><td class="cover">{{ words[i]["front"] }}</td></tr>
                     {% endfor %}
                 {% endif %}
             {% else %}
                 {% for i in words | keys %}
-                    <tr><td>{{ words[i]["id"] }}</td><td>{{ words[i]["back"] }}</td><td data-answer="{{ words[i]["front"] }}"><input type="text" onkeyup="checkAnswer(event.keyCode, this);"></td></tr>
+                    <tr><td>{{ words[i]["id"] }}</td><td class="problem"><div>【{{ words[i]["class"] }}】<br />{{ words[i]["back"] }}</div></td><td data-answer="{{ words[i]["front"] }}"><input type="text" onkeyup="checkAnswer(event.keyCode, this);"></td></tr>
                 {% endfor %}
             {% endif %}
         </table>
@@ -31,8 +33,14 @@
     <div id="page-top">トップ</div>
     <p>エラー/バグ等を発見した場合はお手数ですが開発者(<a href="mailto:nobita.0918&#64;gmail.com">こちら</a>)にご連絡ください</p>
     &copy;2015-2016 0918nobita
+    <form name="form" method="post" action="index.php?controller=event&action=rank">
+        <input type="hidden" name="category" value="{{ category }}">
+        <input type="hidden" name="nickname" value="unknown">
+        <input type="hidden" name="score" value="-1">
+    </form>
 </div>
 <script>
+    document.body.addEventListener('touchstart', function() {});
     $(function(){
         $("#page-top").click(function(){
             $("html,body").animate({scrollTop:0});
@@ -48,26 +56,46 @@
     });
 
     var answers = 0;
+    var correct = 0;
     function checkAnswer(code, element) {
         if (code === 13) {
             var parent = element.parentNode;
-            if (parent.dataset.answer == element.value) {
-                parent.innerHTML = "正解: " + parent.dataset.answer;
-                parent.style.backgroundColor = "#80FF80";
-                if (parent.parentNode.nextElementSibling && parent.parentNode.nextElementSibling.lastChild.firstChild.focus) {
-                    parent.parentNode.nextElementSibling.lastChild.firstChild.focus();
+            var d = new $.Deferred();
+            d.resolve();
+            d.promise().then(function() {
+                if (parent.dataset.answer == element.value) {
+                    parent.innerHTML = "正解: " + parent.dataset.answer;
+                    parent.style.backgroundColor = "#80FF80";
+                    if (parent.parentNode.nextElementSibling && parent.parentNode.nextElementSibling.lastChild.firstChild.focus) {
+                        parent.parentNode.nextElementSibling.lastChild.firstChild.focus();
+                    }
+                    correct++;
+                } else {
+                    parent.innerHTML = "不正解: " + parent.dataset.answer;
+                    parent.style.backgroundColor = "#FF8080";
+                    if (parent.parentNode.nextElementSibling && parent.parentNode.nextElementSibling.lastChild.firstChild.focus) {
+                        parent.parentNode.nextElementSibling.lastChild.firstChild.focus();
+                    }
                 }
-            } else {
-                parent.innerHTML = "不正解: " + parent.dataset.answer;
-                parent.style.backgroundColor = "#FF8080";
-                if (parent.parentNode.nextElementSibling && parent.parentNode.nextElementSibling.lastChild.firstChild.focus) {
-                    parent.parentNode.nextElementSibling.lastChild.firstChild.focus();
+                answers++;
+            }).then(function() {
+                if (answers >= {{ quantity }}) {
+                    alert(correct + "問正解！");
+                    if ("{{ event }}" == "true") {
+                        do {
+                            var nickname = window.prompt("ニックネームを入力してください(必須, 1文字以上10文字以下)", "");
+                        } while(((nickname != null) && (nickname == "")) || ((nickname != null) && (nickname.length > 10)));
+                        if (nickname != null) {
+                            var score = correct;
+                            $(':hidden[name="nickname"]').val(nickname);
+                            $(':hidden[name="score"]').val(score);
+                            $('form').submit();
+                        } else {
+                            location.href="./?controller=event&action=ranking&category={{ category }}";
+                        }
+                    }
                 }
-            }
-            answers++;
-            if (answers >= {{ quantity }}) {
-                alert("終了！お疲れ様でした");
-            }
+            });
         }
     }
 </script>

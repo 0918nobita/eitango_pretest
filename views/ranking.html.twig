@@ -1,0 +1,10 @@
+<div id="header"><a href="./" style="text-decoration: none;color:white;">戻る</a>　「{{ name }}」のランキング</div>
+<div id="main">
+    <p>出題範囲：{{ first }} ～ {{ last }}　問題数：{{ quantity }}<br />
+    {{ start }} ～ {{ end }}</p>
+    {% for record in ranking %}
+        <p>{{ loop.index }}位　{{ record['nickname'] }} : {{ record['score'] }}</p>
+    {% endfor %}
+    <p>エラー/バグ等を発見した場合はお手数ですが開発者(<a href="mailto:nobita.0918&#64;gmail.com">こちら</a>)にご連絡ください</p>
+    &copy;2015-2016 0918nobita
+</div>

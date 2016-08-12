@@ -5,15 +5,15 @@ namespace Pretest\Controllers;
  * Controller 抽象クラス
  * テンプレートエンジンTwigのインスタンスをコンストラクタで生成しておき、
  * displayメソッドでテンプレートファイルへ埋め込むデータを指定し出力する。
- * @access public
  * @author 0918nobita
  * @package Pretest\Controllers
  */
+
 abstract class Controller
 {
     protected $model; // モデルクラスのインスタンスが代入される
     protected $view; // テンプレートファイルの名前
-    protected $stylesheetPath; // スタイルシートファイルのパス
+    protected $stylesheetPath = 'top.css'; // スタイルシートファイルのパス
     protected $twig; // Twigインスタンスが代入される
     protected $data = array(); // テンプレートファイルに埋め込むデータ
 
@@ -38,11 +38,15 @@ abstract class Controller
             'title' => SITE_NAME,
             'site_description' => SITE_DESCRIPTION,
             'content' => $this->view,
-            'stylesheet_file_path' => $this->stylesheetPath
+            'stylesheet_file_path' => './views/css/' . $this->stylesheetPath
         ));
         echo $template->render($this->data);
     }
 
+    /**
+     * テンプレートファイルに埋め込むデータを追加で指定するメソッド。
+     * このクラスのdisplayメソッドを呼び出す前なら何度でも呼び出して追加できる。
+     */
     public function assign($array) {
         $this->data = array_merge($this->data, $array);
     }

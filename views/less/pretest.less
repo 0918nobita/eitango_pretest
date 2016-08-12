@@ -29,10 +29,21 @@ body {
 
 table {
   white-space: nowrap;
+	table-layout: fixed;
 }
 
 tr {
   background-color: white;
+}
+
+.problem {
+	@media (max-width: 900px) {
+		div {
+			min-width: 170px;
+			max-width: 200px;
+			overflow-x: auto;
+		}
+	}
 }
 
 .cover {
