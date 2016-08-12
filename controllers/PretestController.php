@@ -26,9 +26,9 @@ class PretestController extends Controller
     }
 
     /**
-     * Controller::display()をオーバーライドしています。
+     * Controller::display()をオーバーライドしている。
      * プレテストページを表示する前に、設定画面で入力された内容の検証と
-     * テンプレートファイルへの(Validatorクラスのメソッドが返した)単なる値の埋め込みを行います。
+     * テンプレートファイルへの(Validatorクラスのメソッドが返した)単なる値の埋め込みを行う。
      */
     public function display()
     {
@@ -53,13 +53,13 @@ class PretestController extends Controller
             )
         ));
 
-        // イベントに参加している場合は、イベント識別番号(category)も埋め込みます。
+        // イベントに参加している場合は、イベント識別番号(category)も埋め込む。
         if (isset($_POST['event'])) $this->assign(array(
             'event' => 'true',
             'category' => $_POST['category']
         ));
 
-        // 入力値をセッションに保存することで、設定画面での操作時間を短縮します。
+        // 入力値をセッションに保存することで、設定画面での操作時間を短縮する。
         $_SESSION['setting'] = 'true';
         $_SESSION['first'] = $first;
         $_SESSION['last'] = $last;

@@ -19,6 +19,10 @@ class EventController extends Controller
         parent::__construct();
     }
 
+    /**
+     * Controller::display()をオーバーライドしている。
+     * イベント一覧ページを表示する。
+     */
     public function display()
     {
         $this->view = 'event.html.twig';
@@ -31,6 +35,9 @@ class EventController extends Controller
         parent::display();
     }
 
+    /**
+     * イベント詳細ページを表示する。
+     */
     public function detail()
     {
         $this->view = 'eventDetail.html.twig';
@@ -48,12 +55,18 @@ class EventController extends Controller
         parent::display();
     }
 
+    /**
+     * ランク付けを行う
+     */
     public function rank()
     {
         $this->model->rank($_POST['nickname'], $_POST['score'], $_POST['category']);
         header("Location: ./?controller=event&action=ranking&category=" . $_POST['category']);
     }
 
+    /**
+     * ランキングページを表示する
+     */
     public function ranking()
     {
         $this->view = 'ranking.html.twig';

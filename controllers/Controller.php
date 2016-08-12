@@ -11,9 +11,9 @@ namespace Pretest\Controllers;
 
 abstract class Controller
 {
-    protected $model; // モデルクラスのインスタンスが代入される
+    protected $model; // モデルクラス(またはそれを継承したクラス)のインスタンスが代入される
     protected $view; // テンプレートファイルの名前
-    protected $stylesheetPath = 'top.css'; // スタイルシートファイルのパス
+    protected $stylesheetPath = 'top.css'; // スタイルシートファイルの名前
     protected $twig; // Twigインスタンスが代入される
     protected $data = array(); // テンプレートファイルに埋め込むデータ
 

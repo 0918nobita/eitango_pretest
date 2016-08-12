@@ -9,6 +9,7 @@ use Pretest\Models\PretestModel;
  * @author 0918nobita
  * @package Pretest\Controllers
  */
+
 class TopController extends Controller
 {
     protected $view = 'top.html.twig';
@@ -20,6 +21,10 @@ class TopController extends Controller
         $this->model = new PretestModel();
     }
 
+    /**
+     * Controller::display()をオーバーライドしている。
+     * トップページを表示しセッションで保存された設定画面の入力情報を反映する。
+     */
     public function display()
     {
         $this->assign(array('max' => $this->model->max));
