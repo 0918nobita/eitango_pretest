@@ -9,23 +9,25 @@
     {% endif %}
     <p>(Google ChromeとSafari以外のブラウザでは発音機能が利用できません。ご了承ください。)</p>
     <input type="button" value="すべて選択解除" onClick="uncheckAll();">
-    <input type="button" id="display_button" value="答えをすべて表示" onClick="display();">
+    {% if answer_method == "touch" %}
+        <input type="button" id="display_button" value="答えをすべて表示" onClick="display();">
+    {% endif %}
     <br /><br />
     <div id="table-frame">
         <table>
             {% if answer_method == "touch" %}
                 {% if method == "eitango-imi" %}
                     {% for i in words | keys %}
-                        <tr><td>{{ words[i]["id"] }}</td><td class="problem"><div>【{{ words[i]["class"] }}】<br />{{ words[i]["front"] }}</div></td><td class="cover">{{ words[i]["back"] }}</td></tr>
+                        <tr><td>{{ words[i]["id"] }}</td><td class="selector">選択</td><td class="problem"><div>【{{ words[i]["class"] }}】<br />{{ words[i]["front"] }}</div></td><td class="cover">{{ words[i]["back"] }}</td></tr>
                     {% endfor %}
                 {% else %}
                     {% for i in words | keys %}
-                        <tr><td>{{ words[i]["id"] }}</td><td class="problem"><div>【{{ words[i]["class"] }}】<br />{{ words[i]["back"] }}</div></td><td class="cover">{{ words[i]["front"] }}</td></tr>
+                        <tr><td>{{ words[i]["id"] }}</td><td class="selector">選択</td><td class="problem"><div>【{{ words[i]["class"] }}】<br />{{ words[i]["back"] }}</div></td><td class="cover">{{ words[i]["front"] }}</td></tr>
                     {% endfor %}
                 {% endif %}
             {% else %}
                 {% for i in words | keys %}
-                    <tr><td>{{ words[i]["id"] }}</td><td class="problem"><div>【{{ words[i]["class"] }}】<br />{{ words[i]["back"] }}</div></td><td data-answer="{{ words[i]["front"] }}"><input type="text" onkeyup="checkAnswer(event.keyCode, this);"></td></tr>
+                    <tr><td>{{ words[i]["id"] }}</td><td class="selector">選択</td><td class="problem"><div>【{{ words[i]["class"] }}】<br />{{ words[i]["back"] }}</div></td><td data-answer="{{ words[i]["front"] }}"><input type="text" onkeyup="checkAnswer(event.keyCode, this);"></td></tr>
                 {% endfor %}
             {% endif %}
         </table>
@@ -37,10 +39,12 @@
         <input type="hidden" name="category" value="{{ category }}">
         <input type="hidden" name="nickname" value="unknown">
         <input type="hidden" name="score" value="-1">
+        <input type="hidden" name="selected" value="">
     </form>
 </div>
 <script>
     document.body.addEventListener('touchstart', function() {});
+    var selected = [];
     $(function(){
         $("#page-top").click(function(){
             $("html,body").animate({scrollTop:0});
@@ -51,6 +55,19 @@
                 $("#page-top").fadeIn();
             } else {
                 $("#page-top").fadeOut();
+            }
+        });
+
+        $(".selector").click(function(){
+            var node = this.parentNode;
+            if (node.style.backgroundColor != "gray") {
+                node.style.backgroundColor = "gray";
+                selected.push(node.firstChild.innerHTML - 0);
+                console.log(selected);
+            } else {
+                node.style.backgroundColor = "white";
+                selected.splice(selected.indexOf(node.firstChild.innerHTML - 0));
+                console.log(selected);
             }
         });
     });
@@ -89,6 +106,7 @@
                             var score = correct;
                             $(':hidden[name="nickname"]').val(nickname);
                             $(':hidden[name="score"]').val(score);
+                            $(':hidden[name="selected"]').val(JSON.stringify(selected));
                             $('form').submit();
                         } else {
                             location.href="./?controller=event&action=ranking&category={{ category }}";
