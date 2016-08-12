@@ -61,7 +61,7 @@ CREATE TABLE ranking (
   id int(11) NOT NULL AUTO_INCREMENT,  
   nickname text NOT NULL DEFAULT '名無しさん',  
   score int(11) NOT NULL DEFAULT '0',  
-  category int(11) NOT NULL
+  category int(11) NOT NULL,  
   PRIMARY KEY (id)  
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
 
