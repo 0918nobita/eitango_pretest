@@ -1,3 +1,12 @@
+$(function(){
+    $("input"). keydown(function(e) {
+        if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
+            return false;
+        } else {
+            return true;
+        }
+    });
+});
 var answer_method  = document.getElementById('answer_method');
 var method   = document.getElementById('method');
 var order    = document.getElementById('order');
