@@ -24,6 +24,9 @@ class Dispatcher
             case 'pretest':
                 $controllerInstance = new Controllers\PretestController();
                 break;
+            case 'review':
+                $controllerInstance = new Controllers\ReviewController();
+                break;
             case 'session':
                 $controllerInstance = new Controllers\SessionController();
                 break;
