@@ -74,6 +74,7 @@
 
     var answers = 0;
     var correct = 0;
+    var incorrect = [];
     function checkAnswer(code, element) {
         if (code === 13) {
             var parent = element.parentNode;
@@ -93,10 +94,21 @@
                     if (parent.parentNode.nextElementSibling && parent.parentNode.nextElementSibling.lastChild.firstChild.focus) {
                         parent.parentNode.nextElementSibling.lastChild.firstChild.focus();
                     }
+                    incorrect.push(parent.parentNode.firstChild.innerHTML - 0);
                 }
                 answers++;
             }).then(function() {
                 if (answers >= {{ quantity }}) {
+                    $.ajax({
+                        type: "POST",
+                        url: "index.php?controller=session&action=saveIncorrectProblems",
+                        timeout: 10000,
+                        data: {
+                            selected: JSON.stringify(selected)
+                        }
+                    }).fail(function(){
+                        console.log("送信失敗");
+                    });
                     alert(correct + "問正解！");
                     if ("{{ event }}" == "true") {
                         do {
