@@ -13,6 +13,8 @@ use Pretest\Models;
 
 class EventController extends Controller
 {
+    use Models\Paging;
+
     public function __construct()
     {
         $this->model = new Models\EventModel();
