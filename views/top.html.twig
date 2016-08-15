@@ -3,8 +3,8 @@
     <p>Twitter Bot → <a href="https://twitter.com/EitangoPretest" style="text-decoration:none;" target="_blank">@EitangoPretest</a></p>
     <p>英単語を、範囲を指定してまとめてプレテストすることができます。<br />
         各種設定ができます。現在は1～{{ max }}をプレテストすることができます。</p>
-    <a href="./?controller=event&action=detail&id=2"><img src="./res/beta-test.png"></a>
     <p>→ <a href="./?controller=event">すべてのイベント</a></p>
+    <p>→ <a href="./?controller=review">復習する</a></p>
     <h2>設定</h2>
     <form name="settings" action="?controller=pretest" method="POST">
         <p><input type="number" name="first" min="1" max="{{ max }}" value="{{ first }}"required> ～ <input type="number" name="last" min="1" max="{{ max }}" value="{{ last }}" required></p>
