@@ -8,6 +8,12 @@ class ReviewController extends Controller
 
     protected $view = 'review.html.twig';
 
+    public function __construct()
+    {
+        $this->model = new Models\ReviewModel();
+        parent::__construct();
+    }
+
     public function display()
     {
         if (isset($_GET['mode']) && ($_GET['mode'] == "incorrect")) {
