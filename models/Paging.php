@@ -9,15 +9,12 @@ trait Paging
     private $totalPages;
     private $commentsPerPage;
 
-    public function pagingInit($total, $commentsPerPage)
+    public function addPageLink($page, $total, $commentsPerPage)
     {
         $this->total = $total;
         $this->commentsPerPage = $commentsPerPage;
         $this->totalPages = ceil($this->total / $this->commentsPerPage);
-    }
 
-    public function addPageLink($page)
-    {
         if (ctype_digit($page)) {
             $this->page = (int) $page;
         } else if ($page > $this->totalPages) {

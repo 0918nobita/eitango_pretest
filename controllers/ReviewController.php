@@ -10,10 +10,16 @@ class ReviewController extends Controller
 
     public function display()
     {
-        $this->pagingInit(count($_SESSION['incorrect']) + count($_SESSION['selected']), 50);
         $this->assign(array(
-            'page_link' => $this->addPageLink(
-                (isset($_GET['page'])) ? $_GET['page'] : 1
+            'incorrect' => $_SESSION['incorrect'],
+            'selected' => $_SESSION['selected'],
+            'page_link_selected' => $this->addPageLink(
+                (isset($_GET['page'])) ? $_GET['page'] : 1,
+                count($_SESSION['selected']), 50
+            ),
+            'page_link_incorrect' => $this->addPageLink(
+                (isset($_GET['page'])) ? $_GET['page'] : 1,
+                count($_SESSION['incorrect']), 50
             )
         ));
         parent::display();
