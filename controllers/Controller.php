@@ -22,7 +22,7 @@ abstract class Controller
      */
     public function __construct()
     {
-        $loader = new \Twig_Loader_Filesystem(__DIR__ . '/../views');
+        $loader = new \Twig_Loader_Filesystem(__DIR__ . '/../views/templates/');
         $this->twig = new \Twig_Environment($loader);
     }
 
