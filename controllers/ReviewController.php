@@ -10,18 +10,25 @@ class ReviewController extends Controller
 
     public function display()
     {
-        $this->assign(array(
-            'incorrect' => $_SESSION['incorrect'],
-            'selected' => $_SESSION['selected'],
-            'page_link_selected' => $this->addPageLink(
-                (isset($_GET['page'])) ? $_GET['page'] : 1,
-                count($_SESSION['selected']), 50
-            ),
-            'page_link_incorrect' => $this->addPageLink(
-                (isset($_GET['page'])) ? $_GET['page'] : 1,
-                count($_SESSION['incorrect']), 50
-            )
-        ));
+        if (isset($_GET['mode']) && ($_GET['mode'] == "incorrect")) {
+            $this->assign(array(
+                'mode' => 'incorrect',
+                'incorrect' => $_SESSION['incorrect'],
+                'page_link_incorrect' => $this->addPageLink(
+                    (isset($_GET['page'])) ? $_GET['page'] : 1,
+                    count($_SESSION['incorrect']), 50
+                )
+            ));
+        } else {
+            $this->assign(array(
+                'mode' => 'selected',
+                'selected' => $_SESSION['selected'],
+                'page_link_selected' => $this->addPageLink(
+                    (isset($_GET['page'])) ? $_GET['page'] : 1,
+                    count($_SESSION['selected']), 50
+                )
+            ));
+        }
         parent::display();
     }
 }

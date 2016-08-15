@@ -1,18 +1,19 @@
 <div id="header"><a href="./" style="text-decoration: none;color:white;">戻る</a>　復習</div>
 <div id="main">
     <p>過去に選択した問題や間違えた問題を復習できます。</p>
-    <input type="radio" name="mode" value="selected" checked>選択した問題　
-    <input type="radio" name="mode" value="incorrect">間違えた問題
-    <h2>選択した問題</h2>
-    {% for problem in selected %}
-        <p>{{ problem }}</p>
-    {% endfor %}
-    {{ page_link_selected|raw }}
-    <h2>間違えた問題</h2>
-    {% for problem in incorrect %}
-        <p>{{ problem }}</p>
-    {% endfor %}
-    {{ page_link_incorrect|raw }}
+    {% if mode == "selected" %}
+        <p><strong>選択した問題</strong>　<a href="./?controller=review&mode=incorrect">間違えた問題</a></p>
+        {% for problem in selected %}
+            <p>{{ problem }}</p>
+        {% endfor %}
+        {{ page_link_selected|raw }}
+    {% else %}
+        <p><a href="./?controller=review&mode=selected">選択した問題</a>　<strong>間違えた問題</strong></p>
+        {% for problem in incorrect %}
+            <p>{{ problem }}</p>
+        {% endfor %}
+        {{ page_link_incorrect|raw }}
+    {% endif %}
     <p>エラー/バグ等を発見した場合はお手数ですが開発者(<a href="mailto:nobita.0918&#64;gmail.com">こちら</a>)にご連絡ください</p>
     &copy;2015-2016 0918nobita
 </div>
