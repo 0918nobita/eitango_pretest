@@ -22,7 +22,7 @@ abstract class Controller
      */
     public function __construct()
     {
-        $loader = new \Twig_Loader_Filesystem(__DIR__ . '/../views/templates/');
+        $loader = new \Twig_Loader_Filesystem(__DIR__ . '/../views/');
         $this->twig = new \Twig_Environment($loader);
     }
 
@@ -33,11 +33,11 @@ abstract class Controller
      */
     public function display()
     {
-        $template = $this->twig->loadTemplate('base.html.twig');
+        $template = $this->twig->loadTemplate('templates/base.html.twig');
         $this->assign(array(
             'title' => SITE_NAME,
             'site_description' => SITE_DESCRIPTION,
-            'content' => $this->view,
+            'content' => "templates/" . $this->view,
             'stylesheet_file_path' => './views/css/' . $this->stylesheetPath
         ));
         echo $template->render($this->data);
