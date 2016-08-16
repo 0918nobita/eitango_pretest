@@ -7,13 +7,13 @@ trait Paging
     private $offset;
     private $total;
     private $totalPages;
-    private $commentsPerPage;
+    private $itemsPerPage;
 
-    public function addPageLink($page, $total, $commentsPerPage)
+    public function addPageLink($page, $total, $itemsPerPage)
     {
         $this->total = $total;
-        $this->commentsPerPage = $commentsPerPage;
-        $this->totalPages = ceil($this->total / $this->commentsPerPage);
+        $this->itemsPerPage = $itemsPerPage;
+        $this->totalPages = ceil($this->total / $this->itemsPerPage);
 
         if (ctype_digit($page)) {
             $this->page = (int) $page;
@@ -22,16 +22,24 @@ trait Paging
         } else {
             $this->page = 1;
         }
-        $this->offset = $this->commentsPerPage * ($this->page - 1);
+        $this->offset = $this->itemsPerPage * ($this->page - 1);
         $html = "<p>";
         for ($i = 1; $i <= $this->totalPages; $i++) {
             if ($this->page == $i) {
                 $html .= "<strong>${i}</strong> ";
             } else {
-                $html .= "<a href='?page=${i}'>${i}</a>";
+                $html .= "<a href='" . Url::getUrlQuery(array('page' => $i)) . "'>${i}</a> ";
             }
         }
         $html .= "</p>";
         return $html;
+    }
+
+    public function getFrom() {
+        return $this->offset;
+    }
+
+    public function getTo() {
+        return ($this->offset + $this->itemsPerPage) < $this->total ? ($this->offset + $this->itemsPerPage) : $this->total;
     }
 }
