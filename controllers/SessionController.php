@@ -10,10 +10,10 @@ class SessionController
     }
 
     public function saveIncorrectProblems() {
-        $this->model->set("incorrect", json_decode($_POST["incorrect"]));
+        $this->model->saveIncorrectProblems();
     }
 
     public function saveSelectedProblems() {
-        $this->model->set("selected", json_decode($_POST["selected"]));
+        $this->model->saveSelectedProblems();
     }
 }
