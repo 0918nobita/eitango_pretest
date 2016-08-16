@@ -4,13 +4,13 @@
     {% if mode == "selected" %}
         <p><strong>選択した問題</strong>　<a href="./?controller=review&mode=incorrect">間違えた問題</a></p>
         {% for problem in selected %}
-            <p>{{ problem }}</p>
+            <p>{{ problem['id'] }} 【{{ problem['class'] }}】{{ problem['front'] }}　{{ problem['back'] }}</p>
         {% endfor %}
         {{ page_link_selected|raw }}
     {% else %}
         <p><a href="./?controller=review&mode=selected">選択した問題</a>　<strong>間違えた問題</strong></p>
         {% for problem in incorrect %}
-            <p>{{ problem }}</p>
+            <p>{{ problem['id'] }} 【{{ problem['class'] }}】{{ problem['front'] }}　{{ problem['back'] }}</p>
         {% endfor %}
         {{ page_link_incorrect|raw }}
     {% endif %}
