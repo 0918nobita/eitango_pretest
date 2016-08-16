@@ -73,8 +73,13 @@ class EventController extends Controller
     {
         $this->view = 'ranking.html.twig';
         list($category, $name, $first, $last, $quantity, $start, $end, $held) = $this->model->getEventInfo($_GET['category']);
+        $ranking = $this->model->raking($category);
         $this->assign(array(
-            'ranking' => $this->model->raking($category),
+            'page_link' => $this->addPageLink(
+                (isset($_GET['page'])) ? $_GET['page'] : 1,
+                count($ranking), 50
+            ),
+            'ranking' => array_splice($ranking, $this->getFrom(), $this->getTo()),
             'name' => $name,
             'first' => $first,
             'last' => $last,
