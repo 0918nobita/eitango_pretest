@@ -140,6 +140,11 @@ class EventModel extends Model
             $stmt->bindValue(':category', $category, \PDO::PARAM_INT);
             $stmt->execute();
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $score = array();
+            foreach ($result as $key => $row) {
+                array_push($score, $row['score']);
+                $result[$key]['ranking'] = count(array_values(array_unique($score)));
+            }
         } catch(\PDOException $e) {
             echo $e->getMessage();
             die();

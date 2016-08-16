@@ -3,7 +3,7 @@
     <p>出題範囲：{{ first }} ～ {{ last }}　問題数：{{ quantity }}<br />
     {{ start }} ～ {{ end }}</p>
     {% for record in ranking %}
-        <p>{{ loop.index }}位　{{ record['nickname'] }} : {{ record['score'] }}</p>
+        <p>{{ record['ranking'] }}位　{{ record['nickname'] }} : {{ record['score'] }}</p>
     {% endfor %}
     <p>エラー/バグ等を発見した場合はお手数ですが開発者(<script>secretEmailAddress();</script>)にご連絡ください</p>
     &copy;2015-2016 0918nobita
