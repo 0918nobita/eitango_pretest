@@ -3,7 +3,7 @@
 pretest.iml
 
 # jQuery
-views/jquery-3.1.0.min.js
+views/js/jquery-3.1.0.min.js
 
 # Composer
 vendor/
@@ -14,10 +14,6 @@ composer.phar
 views/css/
 
 config-secret.php
-
-# 古いCSSファイル (LESS導入前のもの)
-views/style.css
-views/pretest.css
 
 # MySQLではなくSQLiteでテストする場合必要になるファイル
 database.sqlite3
