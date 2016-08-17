@@ -3,14 +3,16 @@
     <p>過去に選択した問題や間違えた問題を復習できます。</p>
     {% if mode == "selected" %}
         <p><strong>選択した問題</strong>　<a href="./?controller=review&mode=incorrect">間違えた問題</a></p>
+        <button>チェックした問題を削除する</button>
         {% for problem in selected %}
-            <p>{{ problem['id'] }} 【{{ problem['class'] }}】{{ problem['front'] }}　{{ problem['back'] }}</p>
+            <p><input type="checkbox" name="selector"> {{ problem['id'] }} 【{{ problem['class'] }}】{{ problem['front'] }}　{{ problem['back'] }}</p>
         {% endfor %}
         {{ page_link_selected|raw }}
     {% else %}
         <p><a href="./?controller=review&mode=selected">選択した問題</a>　<strong>間違えた問題</strong></p>
+        <button>チェックした問題を削除する</button>
         {% for problem in incorrect %}
-            <p>{{ problem['id'] }} 【{{ problem['class'] }}】{{ problem['front'] }}　{{ problem['back'] }}</p>
+            <p><input type="checkbox" name="selector"> {{ problem['id'] }} 【{{ problem['class'] }}】{{ problem['front'] }}　{{ problem['back'] }}</p>
         {% endfor %}
         {{ page_link_incorrect|raw }}
     {% endif %}
