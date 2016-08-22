@@ -3,19 +3,20 @@
     <p>過去に選択した問題や間違えた問題を復習できます。</p>
     {% if mode == "selected" %}
         <p><strong>選択した問題</strong>　<a href="./?controller=review&mode=incorrect">間違えた問題</a></p>
-        <button>チェックした問題を削除する</button>
+        <button class="deleteSelectedProblems">チェックした問題を削除する</button>
         {% for problem in selected %}
-            <p><input type="checkbox" name="selector"> {{ problem['id'] }} 【{{ problem['class'] }}】{{ problem['front'] }}　{{ problem['back'] }}</p>
+            <p class="problem" data-id="{{ problem['id'] }}"><input type="checkbox" class="check"> <span class="id">{{ problem['id'] }}</span> 【{{ problem['class'] }}】{{ problem['front'] }}　{{ problem['back'] }}</p>
         {% endfor %}
         {{ page_link_selected|raw }}
     {% else %}
         <p><a href="./?controller=review&mode=selected">選択した問題</a>　<strong>間違えた問題</strong></p>
-        <button>チェックした問題を削除する</button>
+        <button class="deleteIncorrectProblems">チェックした問題を削除する</button>
         {% for problem in incorrect %}
-            <p><input type="checkbox" name="selector"> {{ problem['id'] }} 【{{ problem['class'] }}】{{ problem['front'] }}　{{ problem['back'] }}</p>
+            <p class="problem" data-id="{{ problem['id'] }}"><input type="checkbox" class="check"> <span class="id">{{ problem['id'] }}</span> 【{{ problem['class'] }}】{{ problem['front'] }}　{{ problem['back'] }}</p>
         {% endfor %}
         {{ page_link_incorrect|raw }}
     {% endif %}
     <p>エラー/バグ等を発見した場合はお手数ですが開発者(<script>secretEmailAddress();</script>)にご連絡ください</p>
     &copy;2015-2016 0918nobita
 </div>
+<script src="views/js/review.js"></script>

@@ -15,6 +15,14 @@ class Session
         session_destroy();
     }
 
+    public function deleteIncorrectProblems() {
+        for ($i = 0;$i < count($_POST['incorrect']); $i++) {
+        }
+    }
+
+    public function deleteSelectedProblems() {
+    }
+
     public function saveIncorrectProblems() {
         $this->set('incorrect', array_values(array_unique(array_merge(
             json_decode($_POST['incorrect']),
