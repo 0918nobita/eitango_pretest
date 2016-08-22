@@ -143,4 +143,14 @@
             alert("保存に失敗しました");
         });
     }
+
+    function uncheckAll() {
+        selected = [];
+        $('.cover').each(function(){
+            var node = this.parentNode;
+            if (node.style.backgroundColor != "white") {
+                node.style.backgroundColor = "white";
+            }
+        });
+    }
 </script>
