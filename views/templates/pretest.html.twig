@@ -11,7 +11,7 @@
     <p>(Google ChromeとSafari以外のブラウザでは発音機能が利用できません。ご了承ください。)</p>
     <input type="button" value="すべて選択解除" onClick="uncheckAll();">
     {% if answer_method == "touch" %}
-        <input type="button" id="display_button" value="答えをすべて表示" onClick="display();">
+        <input type="button" id="display_button" value="答えをすべて表示" onClick="displayAll();">
     {% endif %}
     <input type="button" value="選択した問題を保存する" onclick="saveSelectedProblems();">
     <br /><br />
@@ -48,6 +48,10 @@
     document.body.addEventListener('touchstart', function() {});
 
     var selected = [];
+    var answers = 0;
+    var correct = 0;
+    var incorrect = [];
+    var displayed = false;
 
     $(function(){
         $("#page-top").click(function(){
@@ -74,11 +78,13 @@
                 console.log(selected);
             }
         });
-    });
 
-    var answers = 0;
-    var correct = 0;
-    var incorrect = [];
+        $('.cover').hover(function () {
+            if (!displayed) $(this).css("color", "black");
+        },function () {
+            if (!displayed) $(this).css("color", "transparent");
+        });
+    });
 
     function checkAnswer(code, element) {
         if (code === 13) {
@@ -157,5 +163,19 @@
                 node.style.backgroundColor = "white";
             }
         });
+    }
+
+    function displayAll() {
+        if (!displayed) {
+            displayed = true;
+            $('.cover').each(function () {
+                this.style.color = "black";
+            });
+        } else {
+            displayed = false;
+            $('.cover').each(function () {
+                this.style.color = "transparent";
+            });
+        }
     }
 </script>
