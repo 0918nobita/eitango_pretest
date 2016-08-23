@@ -23,11 +23,11 @@ class Session
     }
 
     public function deleteIncorrectProblems() {
-        for ($i = 0;$i < count($_POST['incorrect']); $i++) {
-        }
+        $this->set('incorrect', array_values(array_diff($this->get('incorrect'), json_decode($_POST['incorrect']))));
     }
 
     public function deleteSelectedProblems() {
+        $this->set('selected', array_values(array_diff($this->get('selected'), json_decode($_POST['selected']))));
     }
 
     public function saveIncorrectProblems() {
