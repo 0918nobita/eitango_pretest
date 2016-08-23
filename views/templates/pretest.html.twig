@@ -29,7 +29,7 @@
                 {% endif %}
             {% else %}
                 {% for i in words | keys %}
-                    <tr><td>{{ words[i]["id"] }}</td><td class="selector">選択</td><td class="problem"><div>【{{ words[i]["class"] }}】<br />{{ words[i]["back"] }}</div></td><td class="input_cell"　data-answer="{{ words[i]["front"] }}"><input type="text" onkeyup="checkAnswer(event.keyCode, this);"></td></tr>
+                    <tr><td>{{ words[i]["id"] }}</td><td class="selector">選択</td><td class="problem"><div>【{{ words[i]["class"] }}】<br />{{ words[i]["back"] }}</div></td><td class="input_cell" data-answer="{{ words[i]["front"] }}"><input type="text" onkeyup="checkAnswer(event.keyCode, this);"></td></tr>
                 {% endfor %}
             {% endif %}
         </table>
