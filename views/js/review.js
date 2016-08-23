@@ -1,3 +1,5 @@
+// 復習ページのJavaScript
+
 var selected = [];
 $('.check').click(function() {
     if ($(this).prop('checked') == false) {
