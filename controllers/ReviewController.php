@@ -1,10 +1,17 @@
 <?php
 namespace Pretest\Controllers;
+
 use Pretest\Models;
+
+/**
+ * ReviewControllerクラス
+ * 復習ページを表示する際に呼び出されるコントローラで、
+ * ページング処理を実装している。(1ページあたり50件出力)
+ */
 
 class ReviewController extends Controller
 {
-    use Models\Paging;
+    use Models\Paging;  // Pagingトレイトを取り込む
 
     protected $view = 'review.html.twig';
 
