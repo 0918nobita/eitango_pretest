@@ -1,6 +1,14 @@
 <?php
 namespace Pretest\Models;
 
+/**
+ * ReviewModel クラス
+ * 復習ページを表示する際に呼び出される、セッション保存された単語番号の配列をもとに
+ * データベースから単語の情報(番号、英単語、意味)を取得して返すメソッドを実装している。
+ * @author 0918nobita
+ * @package Pretest\Models
+ */
+
 class ReviewModel extends Model
 {
     public function getSelectedWords($array) {

@@ -1,6 +1,13 @@
 <?php
 namespace Pretest\Models;
 
+/**
+ * Session クラス
+ * セッション管理を担当するクラス。
+ * @author 0918nobita
+ * @package Pretest\Models
+ */
+
 class Session
 {
     public static function set($key, $value) {

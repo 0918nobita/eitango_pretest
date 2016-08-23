@@ -1,6 +1,13 @@
 <?php
 namespace Pretest\Models;
 
+/**
+ * Url クラス
+ * URL、特にGETパラメータを更新する際に呼び出されるクラス。
+ * @author 0918nobita
+ * @package Pretest\Models
+ */
+
 class Url
 {
     public static function getUrlQuery($par = Array(), $op = 0){

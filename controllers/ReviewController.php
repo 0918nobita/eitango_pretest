@@ -4,9 +4,11 @@ namespace Pretest\Controllers;
 use Pretest\Models;
 
 /**
- * ReviewControllerクラス
+ * ReviewController クラス
  * 復習ページを表示する際に呼び出されるコントローラで、
  * ページング処理を実装している。(1ページあたり50件出力)
+ * @author 0918nobita
+ * @package Pretest\Controllers
  */
 
 class ReviewController extends Controller
@@ -24,6 +26,7 @@ class ReviewController extends Controller
     public function display()
     {
         if (isset($_GET['mode']) && ($_GET['mode'] == "incorrect")) {
+            // 入力して正誤判定する設定のプレテストで不正解だった問題を一覧表示するモード
             $this->assign(array(
                 'mode' => 'incorrect',
                 'page_link_incorrect' => $this->addPageLink(
@@ -36,6 +39,7 @@ class ReviewController extends Controller
                 )
             ));
         } else {
+            // 選択して保存した問題を一覧表示するモード
             $this->assign(array(
                 'mode' => 'selected',
                 'page_link_selected' => $this->addPageLink(
