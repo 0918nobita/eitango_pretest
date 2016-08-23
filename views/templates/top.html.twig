@@ -8,7 +8,7 @@
     <p>→ <a href="./?controller=review">復習する</a></p>
     <h2>設定</h2>
     <form name="settings" action="?controller=pretest" method="POST">
-        <p><input type="number" name="first" min="1" max="{{ max }}" value="{{ first }}"required> ～ <input type="number" name="last" min="1" max="{{ max }}" value="{{ last }}" required></p>
+        <p>出題範囲：<input type="number" name="first" min="1" max="{{ max }}" value="{{ first }}"required> ～ <input type="number" name="last" min="1" max="{{ max }}" value="{{ last }}" required></p>
         <p id="display">1.
             <select name="answer_method">
                 <option value="non-selected">選択してください</option>
