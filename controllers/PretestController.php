@@ -16,7 +16,7 @@ class PretestController extends Controller
     protected $view = 'pretest.html.twig';
     protected $stylesheetPath = 'pretest.css';
 
-    protected $validator; // 入力値検証クラスのインスタンスが代入される
+    protected $validator; // 入力値検証クラスのインスタンスが代入される。
 
     public function __construct()
     {
@@ -32,13 +32,13 @@ class PretestController extends Controller
      */
     public function display()
     {
-        // 入力値検証を行います。check-メソッドはどれも、検証済みの単なる値を返します。
+        // 入力値検証を行う。check-メソッドはどれも、検証済みの単なる値を返す。
         list($first, $last) = $this->validator->checkRange($_POST['first'], $_POST['last'], $this->model->max);
         list($answerMethod, $method) = $this->validator->checkMethod($_POST['answer_method'], $_POST['method']);
         $order = $this->validator->checkOrder($_POST['order']);
         $quantity = $this->validator->checkQuantity($first, $last, $_POST['quantity'], $_POST['order']);
 
-        // テンプレートファイルに埋め込むデータを指定します。
+        // テンプレートファイルに埋め込むデータを指定する。
         $this->assign(array(
             'first' => $first,
             'last' => $last,

@@ -58,7 +58,7 @@ class EventController extends Controller
     }
 
     /**
-     * ランク付けを行う
+     * ランク付けを行う。
      */
     public function rank()
     {
@@ -67,7 +67,7 @@ class EventController extends Controller
     }
 
     /**
-     * ランキングページを表示する
+     * ランキングページを表示する。
      */
     public function ranking()
     {

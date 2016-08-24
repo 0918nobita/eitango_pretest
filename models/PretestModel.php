@@ -27,7 +27,16 @@ class PretestModel extends Model
         }
         $this->max = $result["id_max"];
     }
-    
+
+    /**
+     * 指定された範囲・順序・問題数でデータベースから単語の一覧を取得し、配列で返す。
+     * プレテストページで表示する問題を取得するために使う。
+     * @param int $first 範囲(始点)
+     * @param int $last 範囲(終点)
+     * @param int $order 順序
+     * @param int $quantity 問題数
+     * @return array 単語データの配列
+     */
     public function getWords($first, $last, $order, $quantity=0) {
         try {
             $stmt = $this->db->prepare("SELECT * FROM words WHERE id >= :first AND id <= :last");
