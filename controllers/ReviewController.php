@@ -6,7 +6,7 @@ use Pretest\Models;
 /**
  * ReviewController クラス
  * 復習ページを表示する際に呼び出されるコントローラで、
- * ページング処理を実装している。(1ページあたり50件出力)
+ * ページング処理を実装している。(1ページあたり20件出力)
  * @author 0918nobita
  * @package Pretest\Controllers
  */
@@ -31,7 +31,7 @@ class ReviewController extends Controller
                 'mode' => 'incorrect',
                 'page_link_incorrect' => $this->addPageLink(
                     (isset($_GET['page'])) ? $_GET['page'] : 1,
-                    (isset($_SESSION['incorrect'])) ? count($_SESSION['incorrect']) : 0, 50
+                    (isset($_SESSION['incorrect'])) ? count($_SESSION['incorrect']) : 0, 20
                 ),
                 'incorrect' => array_splice(
                     $this->model->getSelectedWords((isset($_SESSION['incorrect'])) ? $_SESSION['incorrect'] : array()),
@@ -44,7 +44,7 @@ class ReviewController extends Controller
                 'mode' => 'selected',
                 'page_link_selected' => $this->addPageLink(
                     (isset($_GET['page'])) ? $_GET['page'] : 1,
-                    (isset($_SESSION['selected'])) ? count($_SESSION['selected']) : 0, 50
+                    (isset($_SESSION['selected'])) ? count($_SESSION['selected']) : 0, 20
                 ),
                 'selected' => array_splice(
                     $this->model->getSelectedWords((isset($_SESSION['selected'])) ? $_SESSION['selected'] : array()),
