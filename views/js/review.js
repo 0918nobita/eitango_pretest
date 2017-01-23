@@ -38,8 +38,6 @@ $('.deleteIncorrectProblems').click(function() {
         data: {
             incorrect: JSON.stringify(selected)
         }
-    }).done(function(){
-        alert("削除しました");
     }).fail(function(){
         alert("削除に失敗しました");
     });
